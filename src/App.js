@@ -1,7 +1,20 @@
+import { Routes, Route } from 'react-router-dom';
+
+import { Login } from './components/login/Login';
+
 export const App = () => {
     return (
-        <div>
-            <h1>Here</h1>
-        </div>
+        <>
+            <Routes>
+                <Route
+                    path='/'
+                    element={<Login />}
+                />
+                <Route
+                    path='/login'
+                    element={<Login />}
+                />
+            </Routes>
+        </>
     );
 }
