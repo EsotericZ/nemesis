@@ -1,5 +1,11 @@
+import { Navbar } from '../navbar/Navbar';
+
 export const Home = () => {
     return(
-        <h1>Welcome Home</h1>
+        <>
+            <Navbar />
+            <h1>Welcome Home</h1>
+        </>
+        
     )
 }
