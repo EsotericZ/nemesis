@@ -1,4 +1,6 @@
 import { useCallback, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import {
     MDBContainer,
     MDBTabs,
@@ -23,10 +25,13 @@ import {
 //     GoogleLoginButton,
 // } from 'react-social-login-buttons';
 
+import getSocialEmail from '../../services/users/getSocialEmail';
+
 const REACT_APP_FB_APP_ID = process.env.REACT_APP_FB_APP_ID;
 const REDIRECT_URI = 'http://localhost:3000/';
 
 export const Login = () => {
+    let navigate = useNavigate();
     const [provider, setProvider] = useState('');
     const [profile, setProfile] = useState('');
     const [activeTab, setActiveTab] = useState('tab1');
@@ -37,6 +42,20 @@ export const Login = () => {
         }
         setActiveTab(value);
     };
+
+    const checkSocialLogin = (response) => {
+        setProvider(response.provider);
+        setProfile(response.data);
+        getSocialEmail(response.data.email)
+        .then((response) => {
+            if (!response.data) {
+                console.log('User not found')
+                return
+            }
+            console.log('User found')
+            navigate('/home');
+        })
+    }
 
     const onLogoutSuccess = useCallback(() => {
         setProfile(null);
@@ -108,8 +127,8 @@ export const Login = () => {
                             redirect_uri={REDIRECT_URI}
                             onResolve={(response) => {
                                 console.log(response);
-                                setProvider(response.provider);
-                                setProfile(response.data);
+                                checkSocialLogin(response);
+
                             }}
                             onReject={err => {
                             console.log(err);
