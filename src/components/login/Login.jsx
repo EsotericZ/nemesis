@@ -1,6 +1,6 @@
-import { useCallback, useContext, useEffect, useRef, useState } from 'react';
-import AuthContext from '../../context/AuthProvider';
-import { useNavigate } from 'react-router-dom';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import useAuth from '../../hooks/useAuth';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 import {
     MDBContainer,
@@ -33,8 +33,10 @@ const REACT_APP_FB_APP_ID = process.env.REACT_APP_FB_APP_ID;
 const REDIRECT_URI = 'http://localhost:3000/';
 
 export const Login = () => {
-    const { setAuth } = useContext(AuthContext);
-    let navigate = useNavigate();
+    const { setAuth } = useAuth();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
 
     const errRef = useRef();
 
@@ -43,7 +45,6 @@ export const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
-    const [success, setSuccess] = useState(false);
 
     const [profile, setProfile] = useState('');
     const [activeTab, setActiveTab] = useState('tab1');
@@ -64,7 +65,7 @@ export const Login = () => {
             setAuth({ email, password, roles, accessToken })
             setEmail('');
             setPassword('');
-            setSuccess(true);
+            navigate(from, { replace: true });
         } catch (err) {
             if (!err?.response) {
                 setErrorMessage('Server Not Responding')
