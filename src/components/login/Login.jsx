@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useContext, useEffect, useRef, useState } from 'react';
+import AuthContext from '../../context/AuthProvider';
 import { useNavigate } from 'react-router-dom';
 
 import {
@@ -32,6 +33,7 @@ const REACT_APP_FB_APP_ID = process.env.REACT_APP_FB_APP_ID;
 const REDIRECT_URI = 'http://localhost:3000/';
 
 export const Login = () => {
+    const { setAuth } = useContext(AuthContext);
     let navigate = useNavigate();
 
     const errRef = useRef();
@@ -53,15 +55,27 @@ export const Login = () => {
         setActiveTab(value);
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log('hit')
-        console.log(email)
-        console.log(password)
-        login(email, password);
-        setEmail('');
-        setPassword('');
-        setSuccess(true);
+    const handleSubmit = async () => {
+        try {
+            const response = await login(email, password)
+            const accessToken = response?.accessToken;
+            const roles = response?.roles;
+            console.log(accessToken, roles);
+            setAuth({ email, password, roles, accessToken })
+            setEmail('');
+            setPassword('');
+            setSuccess(true);
+        } catch (err) {
+            if (!err?.response) {
+                setErrorMessage('Server Not Responding')
+                console.log('hit1')
+            } else if (err.response?.status === 405) {
+                setErrorMessage('Invalid Email or Password')
+            } else {
+                setErrorMessage('Login Failed')
+            }
+            errRef.current.focus();
+        }
     }
 
     const checkSocialLogin = (response) => {
