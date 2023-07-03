@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import {
@@ -25,14 +25,24 @@ import {
 //     GoogleLoginButton,
 // } from 'react-social-login-buttons';
 
-import getSocialEmail from '../../services/users/getSocialEmail';
+import getSocialEmail from '../../services/portal/getSocialEmail';
+import login from '../../services/portal/login';
 
 const REACT_APP_FB_APP_ID = process.env.REACT_APP_FB_APP_ID;
 const REDIRECT_URI = 'http://localhost:3000/';
 
 export const Login = () => {
     let navigate = useNavigate();
+
+    const errRef = useRef();
+
     const [provider, setProvider] = useState('');
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+    const [success, setSuccess] = useState(false);
+
     const [profile, setProfile] = useState('');
     const [activeTab, setActiveTab] = useState('tab1');
 
@@ -42,6 +52,17 @@ export const Login = () => {
         }
         setActiveTab(value);
     };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log('hit')
+        console.log(email)
+        console.log(password)
+        login(email, password);
+        setEmail('');
+        setPassword('');
+        setSuccess(true);
+    }
 
     const checkSocialLogin = (response) => {
         setProvider(response.provider);
@@ -65,6 +86,10 @@ export const Login = () => {
 
     const onLogout = useCallback(() => {}, []);
 
+    useEffect(() => {
+        setErrorMessage('');
+    }, [email, password]);
+
     return (
         <>
             <MDBContainer className="p-3 my-5 d-flex flex-column w-50">
@@ -84,15 +109,36 @@ export const Login = () => {
 
                 <MDBTabsContent>
                     <MDBTabsPane show={activeTab === 'tab1'}>
-                        <MDBInput wrapperClass='mb-4' label='Email' id='emailLogin' type='email' />
-                        <MDBInput wrapperClass='mb-4' label='Password' id='passwordLogin' type='password' />
+                        <MDBInput 
+                            wrapperClass='mb-4' 
+                            label='Email' 
+                            id='emailLogin' 
+                            type='email' 
+                            onChange={(e) => setEmail(e.target.value)}
+                            value={email}
+                            required
+                        />
+                        <MDBInput 
+                            wrapperClass='mb-4' 
+                            label='Password' 
+                            id='passwordLogin' 
+                            type='password' 
+                            onChange={(e) => setPassword(e.target.value)}
+                            value={password}
+                            required
+                        />
                         <div className="d-flex justify-content-between mx-4 mb-4">
                             <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Remember me' />
                             <a href="!#">Forgot Password?</a>
                         </div>
                         <div className="d-flex justify-content-center">
-                            <MDBBtn className="mb-4 w-50" size="lg">Sign in</MDBBtn>
+                            <MDBBtn 
+                                className="mb-4 w-50" 
+                                size="lg"
+                                onClick={() => handleSubmit()}
+                            >Sign in</MDBBtn>
                         </div>
+                        <p ref={errRef} className={errorMessage ? "errorMsg" : "offscreen"} aria-live="assertive">{errorMessage}</p>
                         <p className="text-center fw-bold mb-4">OR</p>
 
                         <LoginSocialGoogle
