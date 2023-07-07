@@ -18,7 +18,7 @@ export const App = () => {
                 <Route path='/unauthorized' element={<Unauthorized />} />
 
                 {/* PROTECTED ROUTES */}
-                <Route element={<RequiredAuth allowedRoles={[ 'admin' ]} />}>
+                <Route element={<RequiredAuth allowedRoles={[ 'admin', 'player' ]} />}>
                     <Route path='/home' element={<Home />} />
                 </Route>
 
