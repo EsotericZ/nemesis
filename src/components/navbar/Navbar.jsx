@@ -1,75 +1,47 @@
-import { useState } from 'react';
-import {
-    MDBContainer,
-    MDBNavbar,
-    MDBNavbarBrand,
-    MDBNavbarToggler,
-    MDBIcon,
-    MDBNavbarNav,
-    MDBNavbarItem,
-    MDBNavbarLink,
-    MDBBtn,
-    MDBDropdown,
-    MDBDropdownToggle,
-    MDBDropdownMenu,
-    MDBDropdownItem,
-    MDBCollapse,
-} from 'mdb-react-ui-kit';
+import { Fragment } from 'react';
+import Avatar from '@mui/material/Avatar';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import Typography from '@mui/material/Typography';
+import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
+
+import './navbar.css';
 
 export const Navbar = () => {
-    const [showBasic, setShowBasic] = useState(false);
-
     return (
-        <MDBNavbar expand='lg' light bgColor='light'>
-            <MDBContainer fluid>
-                <MDBNavbarBrand href='#'>Brand</MDBNavbarBrand>
-
-                <MDBNavbarToggler
-                    aria-controls='navbarSupportedContent'
-                    aria-expanded='false'
-                    aria-label='Toggle navigation'
-                    onClick={() => setShowBasic(!showBasic)}
-                >
-                    <MDBIcon icon='bars' fas />
-                </MDBNavbarToggler>
-
-                <MDBCollapse navbar show={showBasic}>
-                    <MDBNavbarNav className='mr-auto mb-2 mb-lg-0'>
-                        <MDBNavbarItem>
-                            <MDBNavbarLink active aria-current='page' href='#'>
-                                Home
-                            </MDBNavbarLink>
-                        </MDBNavbarItem>
-                        <MDBNavbarItem>
-                            <MDBNavbarLink href='#'>Link</MDBNavbarLink>
-                        </MDBNavbarItem>
-
-                        <MDBNavbarItem>
-                            <MDBDropdown>
-                                <MDBDropdownToggle tag='a' className='nav-link' role='button'>
-                                    Dropdown
-                                </MDBDropdownToggle>
-                                <MDBDropdownMenu>
-                                    <MDBDropdownItem link>Action</MDBDropdownItem>
-                                    <MDBDropdownItem link>Another action</MDBDropdownItem>
-                                    <MDBDropdownItem link>Something else here</MDBDropdownItem>
-                                </MDBDropdownMenu>
-                            </MDBDropdown>
-                        </MDBNavbarItem>
-
-                        <MDBNavbarItem>
-                            <MDBNavbarLink disabled href='#' tabIndex={-1} aria-disabled='true'>
-                                Disabled
-                            </MDBNavbarLink>
-                        </MDBNavbarItem>
-                    </MDBNavbarNav>
-
-                    <form className='d-flex input-group w-auto'>
-                        <input type='search' className='form-control' placeholder='Type query' aria-label='Search' />
-                        <MDBBtn color='primary'>Search</MDBBtn>
-                    </form>
-                </MDBCollapse>
-            </MDBContainer>
-        </MDBNavbar>
-    );
+        <>  
+            <PopupState variant="popover" popupId="demo-popup-menu">
+                {(popupState) => (
+                    <Fragment>
+                        <Button variant="outlined" {...bindTrigger(popupState)}>
+                            <Stack direction="row" spacing={2}>
+                                <Avatar 
+                                    alt='test'
+                                    sx={{ width: 56, height: 56 }}
+                                >
+                                    T
+                                </Avatar>
+                                <Stack direction='column' spacing={0} justifyContent='center'>
+                                    <Typography 
+                                        sx={{ fontSize: 18, textTransform: 'none', fontWeight: 'bold'}}
+                                        className='avatarName'
+                                    >
+                                        CJ Sanders
+                                    </Typography>
+                                    <Typography sx={{ fontSize: 14 }}>Player</Typography>
+                                </Stack>
+                            </Stack>
+                        </Button>
+                        <Menu {...bindMenu(popupState)}>
+                            <MenuItem onClick={popupState.close}>Profile</MenuItem>
+                            <MenuItem onClick={popupState.close}>My account</MenuItem>
+                            <MenuItem onClick={popupState.close}>Logout</MenuItem>
+                        </Menu>
+                    </Fragment>
+                )}
+            </PopupState>
+        </>
+    )
 }
