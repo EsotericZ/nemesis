@@ -1,3 +1,18 @@
 .avatarName {
     color: var(--grey);
 }
+
+.avatarTitle {
+    color: var(--grey);
+}
+
+@font-face {
+    font-family: 'urbanDecay';
+    src: local('urbanDecay'), 
+        url(./urbanDecay.ttf) format('truetype');
+}
+
+.nameFont {
+    font-family: 'urbanDecay';
+    color: var(--primary);
+}
