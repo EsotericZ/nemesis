@@ -1,30 +1,24 @@
-import { Fragment, useState } from 'react';
-import Avatar from '@mui/material/Avatar';
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import Typography from '@mui/material/Typography';
+import { Link } from 'react-router-dom';
+import { Fragment } from 'react';
+
 import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-
 import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import FormControl from '@mui/material/FormControl';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormLabel from '@mui/material/FormLabel';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import Switch from '@mui/material/Switch';
-import SpeedDial, { SpeedDialProps } from '@mui/material/SpeedDial';
-import SpeedDialIcon from '@mui/material/SpeedDialIcon';
-import SpeedDialAction from '@mui/material/SpeedDialAction';
 
+import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import HomeIcon from '@mui/icons-material/Home';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 import PeopleIcon from '@mui/icons-material/People';
-
+import SpeedDial from '@mui/material/SpeedDial';
+import SpeedDialIcon from '@mui/material/SpeedDialIcon';
+import SpeedDialAction from '@mui/material/SpeedDialAction';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 
 import './navbar.css';
 
@@ -41,10 +35,10 @@ const AvatarButton = styled(Button)(({ theme }) => ({
 }));
 
 const actions = [
-    { icon: <HomeIcon />, name: 'Home' },
-    { icon: <ChatBubbleOutlineIcon />, name: 'Blog' },
-    { icon: <EmojiEventsIcon />, name: 'Events' },
-    { icon: <PeopleIcon />, name: 'Rankings' },
+    { icon: <Link to='/home'><HomeIcon /></Link>, name: 'Home' },
+    { icon: <Link to='/blog'><ChatBubbleOutlineIcon /></Link>, name: 'Blog' },
+    { icon: <Link to='/events'><EmojiEventsIcon /></Link>, name: 'Events' },
+    { icon: <Link to='/ranking'><PeopleIcon /></Link>, name: 'Rankings' },
 ];
 
 export const Navbar = () => {

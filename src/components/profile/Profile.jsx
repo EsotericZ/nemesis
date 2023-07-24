@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react"
-import getAllUsers from '../../services/users/getAllUsers';
+// import getAllUsers from '../../services/users/getAllUsers';
 
 export const Profile = () => {
     const [users, setUsers] = useState('');
 
-    useEffect(() => {
-        const getUsers = getAllUsers()
-        .then(
-            setUsers(getUsers)
-        )
-    }, [])
+    // useEffect(() => {
+    //     const getUsers = getAllUsers()
+    //     .then(
+    //         setUsers(getUsers)
+    //     )
+    // }, [])
 
     return (
         <article>
