@@ -23,3 +23,9 @@ code {
     --active: #FFFFFF;
     --inactive: #9EA4C1;
 }
+
+@font-face {
+    font-family: 'urbanDecay';
+    src: local('urbanDecay'), 
+        url(./fonts/urbanDecay.ttf) format('truetype');
+}

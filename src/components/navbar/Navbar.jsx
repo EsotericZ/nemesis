@@ -2,7 +2,6 @@ import { Fragment, useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import Icon from '@mui/material/Icon';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
@@ -20,10 +19,12 @@ import Switch from '@mui/material/Switch';
 import SpeedDial, { SpeedDialProps } from '@mui/material/SpeedDial';
 import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
-import FileCopyIcon from '@mui/icons-material/FileCopyOutlined';
-import SaveIcon from '@mui/icons-material/Save';
-import PrintIcon from '@mui/icons-material/Print';
-import ShareIcon from '@mui/icons-material/Share';
+
+import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
+import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
+import HomeIcon from '@mui/icons-material/Home';
+import PeopleIcon from '@mui/icons-material/People';
+
 
 import './navbar.css';
 
@@ -40,17 +41,16 @@ const AvatarButton = styled(Button)(({ theme }) => ({
 }));
 
 const actions = [
-    { icon: <FileCopyIcon />, name: 'Copy' },
-    { icon: <SaveIcon />, name: 'Save' },
-    { icon: <PrintIcon />, name: 'Print' },
-    { icon: <ShareIcon />, name: 'Share' },
+    { icon: <HomeIcon />, name: 'Home' },
+    { icon: <ChatBubbleOutlineIcon />, name: 'Blog' },
+    { icon: <EmojiEventsIcon />, name: 'Events' },
+    { icon: <PeopleIcon />, name: 'Rankings' },
 ];
 
 export const Navbar = () => {
     
     return (
         <Box sx={{ alignContent: 'space-between' }}>  
-        {/* // <Box> */}
             <NavSpeedDial
                 ariaLabel="SpeedDial playground example"
                 icon={<SpeedDialIcon />}
@@ -65,16 +65,6 @@ export const Navbar = () => {
                     />
                 ))}
             </NavSpeedDial>
-            
-            <Box m={2}>
-                <Typography 
-                    sx={{ fontSize: 40, textTransform: 'none' }}
-                    className='nameFont'
-                    align='center'
-                >
-                    Nemesis Racquetball
-                </Typography>
-            </Box>
 
             <PopupState variant="popover" popupId="demo-popup-menu">
                 {(popupState) => (
@@ -112,7 +102,6 @@ export const Navbar = () => {
                         </AvatarButton>
                         <Menu {...bindMenu(popupState)}>
                             <MenuItem onClick={popupState.close}>Profile</MenuItem>
-                            <MenuItem onClick={popupState.close}>My account</MenuItem>
                             <MenuItem onClick={popupState.close}>Logout</MenuItem>
                         </Menu>
                     </Fragment>
