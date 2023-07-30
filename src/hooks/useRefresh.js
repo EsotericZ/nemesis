@@ -6,7 +6,7 @@ const useRefreshToken = () => {
 
     const refresh = async () => {
         console.log('hit')
-        const response = await api.get('/portal/refresh', { 
+        const response = await api.get('/portal/refresh', {
             withCredentials: true,
         });
         setAuth(prev => {
