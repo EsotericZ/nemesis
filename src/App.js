@@ -8,25 +8,31 @@ import { Layout } from './components/Layout';
 import { Login } from './components/login/Login';
 import { Missing } from './components/missing/Missing';
 import { Navbar } from './components/navbar/Navbar';
-import { Profile } from './components/profile/Profile';
+// import { Profile } from './components/profile/Profile';
 import { Ranking } from './components/ranking/Ranking';
 import { Unauthorized } from './components/unauthorized/Unauthorized';
+
+const ROLES = {
+    'Player': 2001,
+    'Director': 1984,
+    'Admin': 5150
+}
 
 export const App = () => {
     return (
         <>
             <Navbar />
             <Routes>
-                <Route path='/' element={<Layout />} />
+                <Route path='/' element={<Home />} />
 
                 {/* PUBLIC ROUTES */}
-                <Route path='/blog' element={<Blog />} />
-                <Route path='/events' element={<Events />} />
-                <Route path='/home' element={<Home />} />
-                <Route path='/login' element={<Login />} />
-                <Route path='/profile' element={<Profile />} />
-                <Route path='/ranking' element={<Ranking />} />
-                <Route path='/unauthorized' element={<Unauthorized />} />
+                <Route path='blog' element={<Blog />} />
+                <Route path='events' element={<Events />} />
+                <Route path='home' element={<Home />} />
+                <Route path='login' element={<Login />} />
+                {/* <Route path='/profile' element={<Profile />} /> */}
+                <Route path='ranking' element={<Ranking />} />
+                <Route path='unauthorized' element={<Unauthorized />} />
 
                 {/* PROTECTED ROUTES */}
                 {/* <Route element={<RequiredAuth allowedRoles={[ 'admin', 'player' ]} />}>

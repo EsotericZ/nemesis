@@ -69,7 +69,10 @@ export const Login = () => {
         } catch (err) {
             if (!err?.response) {
                 setErrorMessage('Server Not Responding')
-                console.log('hit1')
+            } else if (err.response?.status === 400) {
+                setErrorMessage('Missing Email or Password')
+            } else if (err.response?.status === 401) {
+                setErrorMessage('Unauthorized')
             } else if (err.response?.status === 405) {
                 setErrorMessage('Invalid Email or Password')
             } else {

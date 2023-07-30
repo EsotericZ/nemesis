@@ -5,6 +5,7 @@ const useRefreshToken = () => {
     const { setAuth } = useAuth();
 
     const refresh = async () => {
+        console.log('hit')
         const response = await api.get('/portal/refresh', { 
             withCredentials: true,
         });
