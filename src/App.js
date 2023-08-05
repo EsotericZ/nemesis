@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 
 import { Admin } from './components/Admin';
-import { Editor } from './components/Editor';
+import { Director } from './components/Director';
 import { Home } from './components/Home';
 import { Layout } from './components/Layout';
 import { LinkPage } from './components/LinkPage';
@@ -31,7 +31,7 @@ export const App = () => {
                 </Route>
 
                 <Route element={<RequireAuth allowedRoles={[ROLES.Director]} />}>
-                    <Route path="editor" element={<Editor />} />
+                    <Route path="director" element={<Director />} />
                 </Route>
 
                 <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>

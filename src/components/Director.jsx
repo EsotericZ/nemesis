@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom"
 
-export const Editor = () => {
+export const Director = () => {
     return (
         <section>
-            <h1>Editors Page</h1>
+            <h1>Tournament Director Page</h1>
             <br />
-            <p>You must have been assigned an Editor role.</p>
+            <p>Tournament Directors can access this page</p>
             <div className="flexGrow">
                 <Link to="/">Home</Link>
             </div>
