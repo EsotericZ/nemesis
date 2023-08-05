@@ -6,7 +6,6 @@ import { Home } from './components/Home';
 import { Layout } from './components/Layout';
 import { LinkPage } from './components/LinkPage';
 import { Login } from './components/Login';
-import { Lounge } from './components/Lounge';
 import { Missing } from './components/Missing';
 import { Register } from './components/Register';
 import { RequireAuth } from './components/RequireAuth';
@@ -37,10 +36,6 @@ export const App = () => {
 
                 <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
                     <Route path="admin" element={<Admin />} />
-                </Route>
-
-                <Route element={<RequireAuth allowedRoles={[ROLES.Director, ROLES.Admin]} />}>
-                    <Route path="lounge" element={<Lounge />} />
                 </Route>
 
                 <Route path="*" element={<Missing />} />
