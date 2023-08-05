@@ -13,9 +13,9 @@ import { Ranking } from './components/ranking/Ranking';
 import { Unauthorized } from './components/unauthorized/Unauthorized';
 
 const ROLES = {
-    'Player': 2001,
-    'Director': 1984,
-    'Admin': 5150
+    'player': 2001,
+    'director': 1984,
+    'admin': 5150
 }
 
 export const App = () => {
@@ -28,17 +28,17 @@ export const App = () => {
                 {/* PUBLIC ROUTES */}
                 <Route path='blog' element={<Blog />} />
                 <Route path='events' element={<Events />} />
-                <Route path='home' element={<Home />} />
+                {/* <Route path='home' element={<Home />} /> */}
                 <Route path='login' element={<Login />} />
                 {/* <Route path='/profile' element={<Profile />} /> */}
                 <Route path='ranking' element={<Ranking />} />
                 <Route path='unauthorized' element={<Unauthorized />} />
 
                 {/* PROTECTED ROUTES */}
-                {/* <Route element={<RequiredAuth allowedRoles={[ 'admin', 'player' ]} />}>
+                <Route element={<RequiredAuth allowedRoles={[ROLES.admin]} />}>
                     <Route path='/home' element={<Home />} />
-                    <Route path='/profile' element={<Profile />} />
-                </Route> */}
+                    {/* <Route path='/profile' element={<Profile />} /> */}
+                </Route>
 
                 {/* CATCH ALL */}
                 <Route path='*' element={<Missing />} />

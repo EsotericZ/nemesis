@@ -61,7 +61,6 @@ export const Login = () => {
             const response = await login(email, password)
             const accessToken = response?.accessToken;
             const roles = response?.roles;
-            console.log(accessToken, roles);
             setAuth({ email, password, roles, accessToken })
             setEmail('');
             setPassword('');
