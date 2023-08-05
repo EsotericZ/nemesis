@@ -1,17 +1,16 @@
 import { Routes, Route } from 'react-router-dom';
 
-import Register from './components/Register';
-import Login from './components/Login';
-import Home from './components/Home';
-import Layout from './components/Layout';
-import Editor from './components/Editor';
-import Admin from './components/Admin';
-import Missing from './components/Missing';
-import Unauthorized from './components/Unauthorized';
-import Lounge from './components/Lounge';
-import LinkPage from './components/LinkPage';
-import RequireAuth from './components/RequireAuth';
-
+import { Admin } from './components/Admin';
+import { Editor } from './components/Editor';
+import { Home } from './components/Home';
+import { Layout } from './components/Layout';
+import { LinkPage } from './components/LinkPage';
+import { Login } from './components/Login';
+import { Lounge } from './components/Lounge';
+import { Missing } from './components/Missing';
+import { Register } from './components/Register';
+import { RequireAuth } from './components/RequireAuth';
+import { Unauthorized } from './components/Unauthorized';
 
 const ROLES = {
     'Player': 2001,

@@ -1,16 +1,14 @@
 import { Link } from "react-router-dom"
 
-const Editor = () => {
+export const Lounge = () => {
     return (
         <section>
-            <h1>Editors Page</h1>
+            <h1>The Lounge</h1>
             <br />
-            <p>You must have been assigned an Editor role.</p>
+            <p>Admins and Editors can hang out here.</p>
             <div className="flexGrow">
                 <Link to="/">Home</Link>
             </div>
         </section>
     )
 }
-
-export default Editor

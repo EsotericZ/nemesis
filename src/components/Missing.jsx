@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 
-const Missing = () => {
+export const Missing = () => {
     return (
         <article style={{ padding: "100px" }}>
             <h1>Oops!</h1>
@@ -11,5 +11,3 @@ const Missing = () => {
         </article>
     )
 }
-
-export default Missing
