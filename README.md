@@ -7,3 +7,4 @@ move logo offf nav
 nav format on small screens
 
 finding error
+adapt new code
