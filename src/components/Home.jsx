@@ -23,8 +23,6 @@ export const Home = () => {
             <br />
             <Link to="/admin">Go to the Admin page</Link>
             <br />
-            <Link to="/lounge">Go to the Lounge</Link>
-            <br />
             <Link to="/linkpage">Go to the link page</Link>
             <div className="flexGrow">
                 <button onClick={logout}>Sign Out</button>
