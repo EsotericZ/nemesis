@@ -2,9 +2,12 @@ import { useRef, useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 import login from '../services/portal/login';
+import useToggle from '../hooks/useToggle';
+// Use this is you want to save form data
+import useInput from '../hooks/useInput';
 
 export const Login = () => {
-    const { setAuth, persist, setPersist } = useAuth();
+    const { setAuth } = useAuth();
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -13,9 +16,12 @@ export const Login = () => {
     const userRef = useRef();
     const errRef = useRef();
 
-    const [email, setEmail] = useState('');
+    // const [email, setEmail] = useState('');
+    // Use this is you want to save form data
+    const [email, resetEmail, emailAttributes] = useInput('email', '');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
+    const [check, toggleCheck] = useToggle('persist', false);
 
     useEffect(() => {
         userRef.current.focus();
@@ -33,7 +39,9 @@ export const Login = () => {
             const accessToken = response?.data?.accessToken;
             const roles = response?.data?.roles;
             setAuth({ email, password, roles, accessToken });
-            setEmail('');
+            // setEmail('');
+            // Use this is you want to save form data
+            resetEmail();
             setPassword('');
             navigate(from, { replace: true });
         } catch (err) {
@@ -50,14 +58,6 @@ export const Login = () => {
         }
     }
 
-    const togglePersist = () => {
-        setPersist(prev => !prev);
-    }
-
-    useEffect(() => {
-        localStorage.setItem('persist', persist);
-    }, [persist])
-
     return (
         <section>
             <p ref={errRef} className={errorMessage ? "errmsg" : "offscreen"} aria-live="assertive">{errorMessage}</p>
@@ -69,8 +69,10 @@ export const Login = () => {
                     id="email"
                     ref={userRef}
                     autoComplete="off"
-                    onChange={(e) => setEmail(e.target.value)}
-                    value={email}
+                    // onChange={(e) => setEmail(e.target.value)}
+                    // value={email}
+                    // Use this is you want to save form data
+                    {...emailAttributes}
                     required
                 />
 
@@ -87,8 +89,8 @@ export const Login = () => {
                     <input 
                         type='checkbox'
                         id='persist'
-                        onChange={togglePersist}
-                        checked={persist}
+                        onChange={toggleCheck}
+                        checked={check}
                     />
                     <label htmlFor="persist">Trust This Device</label>
                 </div>
