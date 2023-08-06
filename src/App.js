@@ -7,6 +7,7 @@ import { Layout } from './components/Layout';
 import { LinkPage } from './components/LinkPage';
 import { Login } from './components/Login';
 import { Missing } from './components/Missing';
+import { PersistLogin } from './components/PersistLogin';
 import { Register } from './components/Register';
 import { RequireAuth } from './components/RequireAuth';
 import { Unauthorized } from './components/Unauthorized';
@@ -26,16 +27,18 @@ export const App = () => {
                 <Route path="linkpage" element={<LinkPage />} />
                 <Route path="unauthorized" element={<Unauthorized />} />
 
-                <Route element={<RequireAuth allowedRoles={[ROLES.Player]} />}>
-                    <Route path="/" element={<Home />} />
-                </Route>
+                <Route element={<PersistLogin />}>
+                    <Route element={<RequireAuth allowedRoles={[ROLES.Player]} />}>
+                        <Route path="/" element={<Home />} />
+                    </Route>
 
-                <Route element={<RequireAuth allowedRoles={[ROLES.Director]} />}>
-                    <Route path="director" element={<Director />} />
-                </Route>
+                    <Route element={<RequireAuth allowedRoles={[ROLES.Director]} />}>
+                        <Route path="director" element={<Director />} />
+                    </Route>
 
-                <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
-                    <Route path="admin" element={<Admin />} />
+                    <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
+                        <Route path="admin" element={<Admin />} />
+                    </Route>
                 </Route>
 
                 <Route path="*" element={<Missing />} />
