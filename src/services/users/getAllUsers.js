@@ -1,9 +1,8 @@
-import axiosPrivate from "../../api/axios";
 const controller = new AbortController();
 
-const getAllUsers = async () => {
+const getAllUsers = async (axiosPrivate) => {
     const response = await axiosPrivate.get('/users', {
-        signal: controller.signal
+        signal: controller.signal,
     })
     return response;
 }
