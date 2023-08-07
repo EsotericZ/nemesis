@@ -16,7 +16,8 @@ export const Users = () => {
         const getUsers = async () => {
             try {
                 const response = await getAllUsers(axiosPrivate);
-                isMounted && setUsers(response.data);
+                const emails = response.data.map(email => email.email)
+                isMounted && setUsers(emails);
             } catch (err) {
                 console.error(err);
                 navigate('/login', { state: { from: location }, replace: true });
@@ -36,7 +37,7 @@ export const Users = () => {
             {users?.length
                 ? (
                     <ul>
-                        {users.map((user, i) => <li key={i}>{user?.email}</li>)}
+                        {users.map((user, i) => <li key={i}>{user}</li>)}
                     </ul>
                 ) : <p>No users to display</p>
             }

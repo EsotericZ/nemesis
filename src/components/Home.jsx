@@ -1,10 +1,10 @@
+import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-// import { useContext } from "react";
-// import AuthContext from "../context/AuthProvider";
 import useLogout from "../hooks/useLogout";
+import useAuth from '../hooks/useAuth';
 
 export const Home = () => {
-    // const { setAuth } = useContext(AuthContext);
+    const { auth } = useAuth();
     const navigate = useNavigate();
     const logout = useLogout();
 
@@ -17,7 +17,7 @@ export const Home = () => {
         <section>
             <h1>Home</h1>
             <br />
-            <p>You are logged in!</p>
+            <p>You are logged in! {auth?.email}</p>
             <br />
             <Link to="/director">Go to the Tournament Director page</Link>
             <br />
