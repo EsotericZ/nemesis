@@ -13,6 +13,8 @@ import { Register } from './components/Register';
 import { RequireAuth } from './components/RequireAuth';
 import { Unauthorized } from './components/Unauthorized';
 
+
+
 const ROLES = {
     'Player': 2001,
     'Director': 1984,
@@ -30,14 +32,16 @@ export const App = () => {
                     <Route path="linkpage" element={<LinkPage />} />
                     <Route path="unauthorized" element={<Unauthorized />} />
                     {/* <Route element={<PersistLogin />}> */}
-                        <Route path="/" element={<Home />} />
-                        <Route path="/home" element={<Home />} />
+                        {/* <Route path="/" element={<Home />} />
+                        <Route path="/home" element={<Home />} /> */}
                     {/* </Route> */}
 
                     <Route element={<PersistLogin />}>
                         {/* <Route element={<RequireAuth allowedRoles={[ROLES.Player]} />}>
                             <Route path="/" element={<Home />} />
                         </Route> */}
+                        <Route path="/" element={<Home />} />
+                        <Route path="/home" element={<Home />} />
 
                         <Route element={<RequireAuth allowedRoles={[ROLES.Director]} />}>
                             <Route path="director" element={<Director />} />

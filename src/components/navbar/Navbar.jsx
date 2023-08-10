@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from 'react-router-dom';
 import { Fragment } from 'react';
 import useAuth from '../../hooks/useAuth';
+import jwt_decode from 'jwt-decode';
 import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 import { styled } from '@mui/material/styles';
 
@@ -69,6 +70,13 @@ export const Navbar = () => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     
+    const decoded = auth?.accessToken
+        ? jwt_decode(auth.accessToken)
+        : undefined
+
+    console.log(decoded)
+    const email = decoded?.userInfo?.email || ''
+
     return (
         <Box sx={{ alignContent: 'space-between' }}>
             <NavSpeedDial
@@ -105,7 +113,7 @@ export const Navbar = () => {
                 </Box>
             </Modal>
             
-            {auth?.email &&
+            {email &&
                 <PopupState variant="popover" popupId="demo-popup-menu">
                     {(popupState) => (
                         <Fragment>
@@ -131,7 +139,7 @@ export const Navbar = () => {
                                             className='avatarName'
                                             align='left'
                                         >
-                                            {auth.email}
+                                            {email}
                                         </Typography>
                                         <Typography
                                             sx={{ fontSize: 16, textTransform: 'none' }}
