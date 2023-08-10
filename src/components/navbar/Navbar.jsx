@@ -26,14 +26,21 @@ import { Login } from '../Login';
 import './navbar.css';
 
 const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    bgcolor: 'background.paper',
-    border: '1px solid #000',
-    boxShadow: 24,
-    p: 4,
+    modalStyle: { 
+        backgroundColor: "var(--background)",
+        opacity: '0.9'
+    },
+    contentStyle: {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        bgcolor: 'var(--primary)',
+        // bgcolor: 'red',
+        border: '1px solid #000',
+        boxShadow: 24,
+        p: 4,
+    }
 };
 
 const NavSpeedDial = styled(SpeedDial)(({ theme }) => ({
@@ -91,8 +98,9 @@ export const Navbar = () => {
                 onClose={handleClose}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
+                sx={style.modalStyle}
             >
-                <Box sx={style}>
+                <Box sx={style.contentStyle}>
                     <Login />
                 </Box>
             </Modal>
@@ -123,13 +131,15 @@ export const Navbar = () => {
                                             className='avatarName'
                                             align='left'
                                         >
-                                            CJ Sanders
+                                            {auth.email}
                                         </Typography>
                                         <Typography
                                             sx={{ fontSize: 16, textTransform: 'none' }}
                                             className='avatarName'
                                             align='left'
-                                        >Player</Typography>
+                                        >
+                                            Player
+                                        </Typography>
                                     </Stack>
                                     <KeyboardArrowDownIcon sx={{ fontSize: 24 }} className='avatarName' />
                                 </Stack>

@@ -29,7 +29,10 @@ export const App = () => {
                     <Route path="register" element={<Register />} />
                     <Route path="linkpage" element={<LinkPage />} />
                     <Route path="unauthorized" element={<Unauthorized />} />
-                    <Route path="/" element={<Home />} />
+                    {/* <Route element={<PersistLogin />}> */}
+                        <Route path="/" element={<Home />} />
+                        <Route path="/home" element={<Home />} />
+                    {/* </Route> */}
 
                     <Route element={<PersistLogin />}>
                         {/* <Route element={<RequireAuth allowedRoles={[ROLES.Player]} />}>

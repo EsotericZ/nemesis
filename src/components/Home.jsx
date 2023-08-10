@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import useLogout from "../hooks/useLogout";
 import useAuth from '../hooks/useAuth';
@@ -17,7 +16,7 @@ export const Home = () => {
         <section>
             <h1>Home</h1>
             <br />
-            <p>You are logged in! {auth?.email}</p>
+            <h1>You are logged in! {auth?.email}</h1>
             <br />
             <Link to="/director">Go to the Tournament Director page</Link>
             <br />
