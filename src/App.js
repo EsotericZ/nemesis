@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 
 import { Admin } from './components/Admin';
+import { Dashboard } from './components/dashboard/Dashboard';
 import { Director } from './components/Director';
 import { Home } from './components/Home';
 import { Layout } from './components/Layout';
@@ -37,11 +38,12 @@ export const App = () => {
                     {/* </Route> */}
 
                     <Route element={<PersistLogin />}>
-                        {/* <Route element={<RequireAuth allowedRoles={[ROLES.Player]} />}>
-                            <Route path="/" element={<Home />} />
-                        </Route> */}
                         <Route path="/" element={<Home />} />
                         <Route path="/home" element={<Home />} />
+
+                        <Route element={<RequireAuth allowedRoles={[ROLES.Player]} />}>
+                            <Route path="/dashboard" element={<Dashboard />} />
+                        </Route>
 
                         <Route element={<RequireAuth allowedRoles={[ROLES.Director]} />}>
                             <Route path="director" element={<Director />} />
