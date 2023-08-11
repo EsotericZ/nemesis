@@ -161,7 +161,7 @@ export const Navbar = () => {
                                 </Stack>
                             </AvatarButton>
                             <Menu {...bindMenu(popupState)}>
-                                <MenuItem onClick={popupState.close}>Profile</MenuItem>
+                                <MenuItem onClick={popupState.close}><Link to='/profile'>Profile</Link></MenuItem>
                                 {/* <MenuItem onClick={popupState.close}>Logout</MenuItem> */}
                                 <MenuItem onClick={signOut}>Logout</MenuItem>
                             </Menu>

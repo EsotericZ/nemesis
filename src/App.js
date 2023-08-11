@@ -10,6 +10,7 @@ import { Login } from './components/Login';
 import { Missing } from './components/Missing';
 import { Navbar } from './components/navbar/Navbar';
 import { PersistLogin } from './components/PersistLogin';
+import { Profile } from './components/profile/Profile';
 import { Register } from './components/Register';
 import { RequireAuth } from './components/RequireAuth';
 import { Unauthorized } from './components/Unauthorized';
@@ -43,6 +44,7 @@ export const App = () => {
 
                         <Route element={<RequireAuth allowedRoles={[ROLES.Player]} />}>
                             <Route path="/dashboard" element={<Dashboard />} />
+                            <Route path="/profile" element={<Profile />} />
                         </Route>
 
                         <Route element={<RequireAuth allowedRoles={[ROLES.Director]} />}>
