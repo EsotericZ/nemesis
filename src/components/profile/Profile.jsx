@@ -18,12 +18,18 @@ export const Profile = () => {
     const roles = decoded?.userInfo?.roles || [];
     console.log(roles)
 
+    let newRole = []
+    roles.forEach(role => {
+        newRole.push(ROLE_CODES[role])
+    });
+    console.log(newRole)
+
     return (
         <>
             <h1>Logged in as {email}</h1>
             <ul>
-                {roles.map(role => (
-                    <li key={role}>{ROLE_CODES[role]}</li>
+                {newRole.map(role => (
+                    <li key={role}>{role}</li>
                 ))}
             </ul>
         </>
