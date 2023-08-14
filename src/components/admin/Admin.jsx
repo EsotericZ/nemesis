@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import { Users } from './Users';
 
 export const Admin = () => {
@@ -8,8 +8,8 @@ export const Admin = () => {
             <br />
             <Users />
             <br />
-            <div className="flexGrow">
-                <Link to="/">Home</Link>
+            <div className='flexGrow'>
+                <Link to='/dashboard'>Home</Link>
             </div>
         </section>
     )

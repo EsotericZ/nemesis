@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import getAllUsers from "../services/users/getAllUsers";
-import useAxiosPrivate from "../hooks/useAxiosPrivate";
+import getAllUsers from "../../services/users/getAllUsers";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 
 export const Users = () => {
     const axiosPrivate = useAxiosPrivate();

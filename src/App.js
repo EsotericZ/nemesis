@@ -1,22 +1,21 @@
 import { Routes, Route } from 'react-router-dom';
 
-import { Admin } from './components/Admin';
+import { Admin } from './components/admin/Admin';
 import { Dashboard } from './components/dashboard/Dashboard';
-import { Director } from './components/Director';
-import { Home } from './components/Home';
+import { Director } from './components/director/Director';
+import { Home } from './components/home/Home';
 import { Layout } from './components/Layout';
-import { LinkPage } from './components/LinkPage';
 import { Login } from './components/Login';
-import { Missing } from './components/Missing';
+import { Missing } from './components/missing/Missing';
 import { Navbar } from './components/navbar/Navbar';
 import { PersistLogin } from './components/PersistLogin';
 import { Profile } from './components/profile/Profile';
-import { Register } from './components/Register';
+import { Register } from './components/register/Register';
 import { RequireAuth } from './components/RequireAuth';
-import { Unauthorized } from './components/Unauthorized';
+import { Unauthorized } from './components/unauthorized/Unauthorized';
 
 
-
+// import ROLES from './services/roles/roles';
 const ROLES = {
     'Player': 2001,
     'Director': 1984,
@@ -31,12 +30,7 @@ export const App = () => {
                 <Route path="/" element={<Layout />}>
                     <Route path="login" element={<Login />} />
                     <Route path="register" element={<Register />} />
-                    <Route path="linkpage" element={<LinkPage />} />
                     <Route path="unauthorized" element={<Unauthorized />} />
-                    {/* <Route element={<PersistLogin />}> */}
-                        {/* <Route path="/" element={<Home />} />
-                        <Route path="/home" element={<Home />} /> */}
-                    {/* </Route> */}
 
                     <Route element={<PersistLogin />}>
                         <Route path="/" element={<Home />} />
