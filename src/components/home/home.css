@@ -2,55 +2,13 @@
     padding: 350px 100px 0px;
 }
 
-
-
-
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
-/* $regal-blue: #034378;
-$san-juan: #2d4e68;
-$bermuda: #77d7b9;
-$white: #fff;
-$black: #000;
-$open-sans: 'Open Sans', */
-/* sans-serif; */
-/* // clear-fix mixin */
-@mixin cf {
-  &::before,
-  &::after {
-    content: '';
-    display: table;
-  }
-  &::after {
-    clear: both;
-  }
-}
-
-/* * {
-  box-sizing: border-box;
-} */
-
-
-a {
-  text-decoration: none;
-}
-
-h1 {
-  /* font-family: $open-sans; */
-  font-weight: 300;
-}
-
-.row {
-  max-width: 900px;
-  margin: 50px auto 0;
-}
 
 .card {
-    float: left;
-    padding: 0 1.7rem;
-    width: 50%;
+    width: 100%;
+    background-color: red;
 
     .menu-content {
-        /* @include cf; */
         margin: 0;
         padding: 0;
         list-style-type: none;
@@ -59,23 +17,18 @@ h1 {
             display: inline-block;
         }
 
-        a {
-            color: white;
-        }
-
         span {
             position: absolute;
             left: 50%;
             top: 0;
             font-size: 10px;
             font-weight: 700;
-            font-family: 'Open Sans';
             transform: translate(-50%, 0);
         }
     }
 
     .wrapper {
-        background-color: white;
+        background: url(https://tvseriescritic.files.wordpress.com/2016/10/stranger-things-bicycle-lights-children.jpg) center / cover no-repeat;
         min-height: 540px;
         position: relative;
         overflow: hidden;
@@ -85,6 +38,31 @@ h1 {
             .data {
                 transform: translateY(0);
             }
+            .menu-content {
+                span {
+                    transform: translate(-50%, -10px);
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    .wrapper2 {
+        min-height: 540px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 19px 38px rgba(black, 0.3), 0 15px 12px rgba(black, 0.2);
+
+        &:hover {
+            .data {
+                transform: translateY(0);
+            }
+            .menu-content {
+                span {
+                    transform: translate(-50%, -10px);
+                    opacity: 1;
+                }
+            }
         }
     }
 
@@ -92,7 +70,8 @@ h1 {
         position: absolute;
         bottom: 0;
         width: 100%;
-        transform: translateY(calc(70px + 1em));
+        color: white;
+        transform: translateY(calc(70px + 4em));
         transition: transform 0.3s;
 
         .content {
@@ -103,41 +82,19 @@ h1 {
     }
 
     .author {
-        font-size: 12px;
+        font-size: 14px;
     }
 
     .title {
         margin-top: 10px;
+        a {
+            color: white;
+        }
     }
 
     .text {
         height: 70px;
         margin: 0;
-    }
-
-    input[type='checkbox'] {
-        display: none;
-    }
-
-    input[type='checkbox']:checked+.menu-content {
-        transform: translateY(-60px);
-    }
-}
-
-
-
-.example-2 {
-    .wrapper {
-        background: url(https://tvseriescritic.files.wordpress.com/2016/10/stranger-things-bicycle-lights-children.jpg) center / cover no-repeat;
-
-        &:hover {
-            .menu-content {
-                span {
-                    transform: translate(-50%, -10px);
-                    opacity: 1;
-                }
-            }
-        }
     }
 
     .header {
@@ -146,36 +103,32 @@ h1 {
 
         .date {
             float: left;
-            font-size: 12px;
+            font-size: 14px;
         }
     }
 
     .menu-content {
         float: right;
+        font-size: 16px;
 
         li {
             margin: 0 5px;
             position: relative;
-        }
-    }
-
-    .data {
-        color: white;
-        transform: translateY(calc(70px + 4em));
-    }
-
-    .title {
-        a {
             color: white;
         }
+    }
+
+    .cardType {
+        text-decoration: none;
+        color: white;
     }
 
     .button {
         display: block;
         width: 100px;
-        margin: 25px auto 15px;
+        margin: 1em auto 0.5em;
         text-align: center;
-        font-size: 12px;
+        font-size: 16px;
         color: white;
         line-height: 1;
         position: relative;

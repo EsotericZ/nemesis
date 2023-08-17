@@ -16,85 +16,104 @@ export const Home = () => {
         <Box sx={{ flexGrow: 1 }} className='homePaper'>
             <Grid container spacing={5}>
                 <Grid item xs={12} sm={6} md={3}>
-                    <Card sx={{ maxWidth: 345 }}>
-                        <CardMedia
-                            sx={{ height: 140 }}
-                            image="/static/images/cards/contemplative-reptile.jpg"
-                            title="green iguana"
-                        />
-                        <CardContent>
-                            <Typography gutterBottom variant="h5" component="div">
-                                Lizard
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                Lizards are a widespread group of squamate reptiles, with over 6,000
-                                species, ranging across all continents except Antarctica
-                            </Typography>
-                        </CardContent>
-                        <CardActions>
-                            <Button size="small">Share</Button>
-                            <Button size="small">Learn More</Button>
-                        </CardActions>
-                    </Card>
-                </Grid>
-
-                <Grid item xs={12} sm={6} md={3}>
-
-                    <div class="example-2 card">
-                        <div class="wrapper">
-                            <div class="header">
+                    <Card style={{backgroundColor: 'transparent'}} className="card">
+                        <CardMedia 
+                            className='wrapper2'
+                            image="https://tvseriescritic.files.wordpress.com/2016/10/stranger-things-bicycle-lights-children.jpg"
+                        >
+                            <CardContent className='header'>
                                 <div class="date">
-                                    <span class="day">12</span>
-                                    <span class="month">Aug</span>
-                                    <span class="year">2016</span>
+                                    <span>08/16/2023</span>
                                 </div>
                                 <ul class="menu-content">
-                                    <li>
-                                        <a href="#" class="fa fa-bookmark-o"></a>
-                                    </li>
-                                    <li><a href="#" class="fa fa-heart-o"></a></li>
-                                    <li><a href="#" class="fa fa-comment-o"></a></li>
+                                    <li><a href="#" className="cardType">Event</a></li>
                                 </ul>
-                            </div>
-                            <div class="data">
+                            </CardContent>
+                            <CardContent sx={{ p:0, '&:last-child': { pb: 0 }}} className='data'>
                                 <div class="content">
                                     <span class="author">Jane Doe</span>
                                     <h1 class="title">Stranger Things: The sound of the Upside Down</h1>
                                     <p class="text">The antsy bingers of Netflix will eagerly anticipate the digital release of the Survive soundtrack, out today.</p>
                                     <a href="#" class="button">Read more</a>
                                 </div>
+                            </CardContent>
+                        </CardMedia>
+                    </Card>
+                </Grid>
+
+                <Grid item xs={12} sm={6} md={3} className='grid'>
+                    <div class="card">
+                        <div class="wrapper">
+                            <div class="header">
+                                <div class="date">
+                                    <span>08/16/2023</span>
+                                </div>
+                                <ul class="menu-content">
+                                    <li><a href="#" className="cardType">None</a></li>
+                                </ul>
+                            </div>
+                            <div class="data">
+                                <div class="content">
+                                    <span class="author">Jane Doe</span>
+                                    <h1 class="title">Stranger Things</h1>
+                                    <p class="text">The antsy bingers of Netflix will eagerly anticipate the digital release of the Survive soundtrack, out today.</p>
+                                    <a href="#" class="button">Read more</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-
-
-
-                {/* <Card sx={{ maxWidth: 345 }} className='example-2'>
-                    <CardMedia
-                        sx={{ height: 140 }}
-                        image="/static/images/cards/contemplative-reptile.jpg"
-                        title="green iguana"
-                    />
-                    <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
-                            Lizard
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                            Lizards are a widespread group of squamate reptiles, with over 6,000
-                            species, ranging across all continents except Antarctica
-                        </Typography>
-                    </CardContent>
-                    <CardActions>
-                        <Button size="small">Share</Button>
-                        <Button size="small">Learn More</Button>
-                    </CardActions>
-                </Card> */}
             </Grid>
-            <Grid item xs={12} sm={6} md={3}>
-                <Paper>1</Paper>
+
+            <Grid item xs={12} sm={6} md={3} className='grid'>
+                <Card style={{backgroundColor: 'transparent'}} className="card">
+                    <CardMedia 
+                        className='wrapper2'
+                        image="https://tvseriescritic.files.wordpress.com/2016/10/stranger-things-bicycle-lights-children.jpg"
+                    >
+                        <CardContent className='header'>
+                            <div class="date">
+                                <span>08/16/2023</span>
+                            </div>
+                            <ul class="menu-content">
+                                <li><a href="#"  className="cardType">Event</a></li>
+                            </ul>
+                        </CardContent>
+                        <CardContent sx={{ p:0, '&:last-child': { pb: 0 }}} className='data'>
+                            <div class="content">
+                                <span class="author">Jane Doe</span>
+                                <h1 class="title">Stranger Things: The sound of the Upside Down</h1>
+                                <p class="text">The antsy bingers of Netflix will eagerly anticipate the digital release of the Survive soundtrack, out today.</p>
+                                <a href="#" class="button">Read more</a>
+                            </div>
+                        </CardContent>
+                    </CardMedia>
+                </Card>
             </Grid>
+
             <Grid item xs={12} sm={6} md={3}>
-                <Paper>1</Paper>
+                <Card style={{backgroundColor: 'transparent'}} className="card">
+                    <CardMedia 
+                        className='wrapper2'
+                        image="https://tvseriescritic.files.wordpress.com/2016/10/stranger-things-bicycle-lights-children.jpg"
+                    >
+                        <CardContent className='header'>
+                            <div class="date">
+                                <span>08/16/2023</span>
+                            </div>
+                            <ul class="menu-content">
+                                <li><a href="#" className="cardType">Event</a></li>
+                            </ul>
+                        </CardContent>
+                        <CardContent sx={{ p:0, '&:last-child': { pb: 0 }}} className='data'>
+                            <div class="content">
+                                <span class="author">Jane Doe</span>
+                                <h1 class="title">Stranger Things: The sound of the Upside Down</h1>
+                                <p class="text">The antsy bingers of Netflix will eagerly anticipate the digital release of the Survive soundtrack, out today.</p>
+                                <a href="#" class="button">Read more</a>
+                            </div>
+                        </CardContent>
+                    </CardMedia>
+                </Card>
             </Grid>
         </Grid>
         </Box >
