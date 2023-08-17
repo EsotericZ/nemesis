@@ -1,5 +1,16 @@
 .homePaper {
-    padding: 350px 100px 0px;
+    padding: 150px 100px 0px;
+}
+
+.homeTitle {
+    color: aqua;
+    direction: row;
+    text-align: center;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    font-size: 100px;
+    padding: 50px
 }
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
@@ -7,6 +18,12 @@
 .card {
     width: 100%;
     background-color: red;
+    
+    &:hover {
+        -webkit-box-shadow: 0px 0px 50px 0px rgba(255,165,0,1);
+        -moz-box-shadow: 0px 0px 50px 0px rgba(255,165,0,1);
+        box-shadow: 0px 0px 50px 0px rgba(255,165,0,1);
+    }
 
     .menu-content {
         margin: 0;
@@ -28,27 +45,7 @@
     }
 
     .wrapper {
-        background: url(https://tvseriescritic.files.wordpress.com/2016/10/stranger-things-bicycle-lights-children.jpg) center / cover no-repeat;
-        min-height: 540px;
-        position: relative;
-        overflow: hidden;
-        box-shadow: 0 19px 38px rgba(black, 0.3), 0 15px 12px rgba(black, 0.2);
-
-        &:hover {
-            .data {
-                transform: translateY(0);
-            }
-            .menu-content {
-                span {
-                    transform: translate(-50%, -10px);
-                    opacity: 1;
-                }
-            }
-        }
-    }
-
-    .wrapper2 {
-        min-height: 540px;
+        min-height: 450px;
         position: relative;
         overflow: hidden;
         box-shadow: 0 19px 38px rgba(black, 0.3), 0 15px 12px rgba(black, 0.2);
