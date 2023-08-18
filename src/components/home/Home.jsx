@@ -8,13 +8,13 @@ import Paper from '@mui/material/Paper';
 
 import './home.css';
 
-const Item = styled(Paper)(({ theme }) => ({
-    // ...theme.typography.body2,
-    background: 'transparent',
-    textAlign: 'center',
-    color: 'yellow',
-    elevation: 0,
-}));
+// const Item = styled(Paper)(({ theme }) => ({
+//     // ...theme.typography.body2,
+//     background: 'transparent',
+//     textAlign: 'center',
+//     color: 'yellow',
+//     elevation: 0,
+// }));
 
 export const Home = () => {
     return (

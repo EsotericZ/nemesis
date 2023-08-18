@@ -20,9 +20,10 @@ import { Unauthorized } from './components/unauthorized/Unauthorized';
 
 // import ROLES from './services/roles/roles';
 const ROLES = {
+    'Admin': 1089,
+    'Blogger': 1634,
+    'Director': 8128,
     'Player': 2001,
-    'Director': 1984,
-    'Admin': 5150
 }
 
 export const App = () => {
@@ -31,9 +32,9 @@ export const App = () => {
             <Navbar />
             <Routes>
                 <Route path="/" element={<Layout />}>
-                    <Route path="login" element={<Login />} />
-                    <Route path="register" element={<Register />} />
-                    <Route path="unauthorized" element={<Unauthorized />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/register" element={<Register />} />
+                    <Route path="/unauthorized" element={<Unauthorized />} />
 
                     <Route element={<PersistLogin />}>
                         <Route path="/" element={<Home />} />
@@ -48,11 +49,11 @@ export const App = () => {
                         </Route>
 
                         <Route element={<RequireAuth allowedRoles={[ROLES.Director]} />}>
-                            <Route path="director" element={<Director />} />
+                            <Route path="/director" element={<Director />} />
                         </Route>
 
                         <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
-                            <Route path="admin" element={<Admin />} />
+                            <Route path="/admin" element={<Admin />} />
                         </Route>
                     </Route>
 

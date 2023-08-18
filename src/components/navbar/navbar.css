@@ -5,3 +5,7 @@
 .avatarTitle {
     color: var(--grey);
 }
+
+.profile {
+    color: black;
+}

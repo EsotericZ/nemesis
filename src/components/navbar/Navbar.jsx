@@ -82,7 +82,10 @@ export const Navbar = () => {
         ? jwt_decode(auth.accessToken)
         : undefined
 
-    const email = decoded?.userInfo?.email || ''
+    const email = decoded?.userInfo?.email || '';
+    const playerName = `${decoded?.userInfo?.firstName} ${decoded?.userInfo?.lastName}` || '';
+    const playerInitial = decoded?.userInfo?.firstName.charAt(0) || '';
+    const playerRoles = decoded?.userInfo?.roles || [];
 
     return (
         <Box sx={{ alignContent: 'space-between' }}>
@@ -97,6 +100,7 @@ export const Navbar = () => {
                         key={action.name}
                         icon={action.icon}
                         tooltipTitle={action.name}
+                        sx={{ backgroundColor: '#070C27', color: '#CBCCD2', '&:hover': {a: {color: '#8C7CF0'}} }}
                     />
                 ))}
                 {!email &&
@@ -106,6 +110,7 @@ export const Navbar = () => {
                         // icon={action.icon}
                         tooltipTitle='Login'
                         // onClick={handleOpen}
+                        sx={{ backgroundColor: '#070C27', color: '#CBCCD2', '&:hover': {a: {color: '#8C7CF0'}} }}
                     />
                 }
             </NavSpeedDial>
@@ -139,7 +144,7 @@ export const Navbar = () => {
                                         alt='test'
                                         sx={{ width: 50, height: 50, backgroundColor: '#8C7CF0' }}
                                     >
-                                        T
+                                        {playerInitial}
                                     </Avatar>
                                     <Stack direction='column' spacing={0} justifyContent='center'>
                                         <Typography
@@ -147,7 +152,7 @@ export const Navbar = () => {
                                             className='avatarName'
                                             align='left'
                                         >
-                                            {email}
+                                            {playerName}
                                         </Typography>
                                         <Typography
                                             sx={{ fontSize: 16, textTransform: 'none' }}
@@ -161,9 +166,25 @@ export const Navbar = () => {
                                 </Stack>
                             </AvatarButton>
                             <Menu {...bindMenu(popupState)}>
-                                <MenuItem onClick={popupState.close}><Link to='/profile'>Profile</Link></MenuItem>
-                                {/* <MenuItem onClick={popupState.close}>Logout</MenuItem> */}
-                                <MenuItem onClick={signOut}>Logout</MenuItem>
+                                {playerRoles.map((role, index) => {
+                                    if (role === 1089) {
+                                        return (
+                                            <MenuItem onClick={popupState.close}><Link to='/profile' className='profile'>Admin Dashboard</Link></MenuItem>
+                                        )
+                                    }
+                                    if (role === 1634) {
+                                        return (
+                                            <MenuItem onClick={popupState.close}><Link to='/profile' className='profile'>Blog Dashboard</Link></MenuItem>
+                                        )
+                                    }
+                                    if (role === 8128) {
+                                        return (
+                                            <MenuItem onClick={popupState.close}><Link to='/profile' className='profile'>Event Dashboard</Link></MenuItem>
+                                        )
+                                    }
+                                })}
+                                <MenuItem onClick={popupState.close}><Link to='/profile' className='profile'>Profile</Link></MenuItem>
+                                <MenuItem onClick={signOut} className='profile'>Logout</MenuItem>
                             </Menu>
                         </Fragment>
                     )}

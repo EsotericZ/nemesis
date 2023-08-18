@@ -2,9 +2,10 @@ import useAuth from '../../hooks/useAuth';
 import jwt_decode from 'jwt-decode';
 // import ROLES from '../../services/roles/roles';
 const ROLE_CODES = {
+    1089: 'Admin',
+    1634: 'Blogger',
     2001: 'Player',
-    1984: 'Director',
-    5150: 'Admin'
+    8128: 'Director',
 }
 
 export const Profile = () => {
@@ -16,13 +17,11 @@ export const Profile = () => {
 
     const email = decoded?.userInfo?.email || '';
     const roles = decoded?.userInfo?.roles || [];
-    console.log(roles)
 
     let newRole = []
     roles.forEach(role => {
         newRole.push(ROLE_CODES[role])
     });
-    console.log(newRole)
 
     return (
         <>
