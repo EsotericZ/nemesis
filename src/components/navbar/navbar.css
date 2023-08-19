@@ -8,4 +8,14 @@
 
 .profile {
     color: black;
+    padding: 0px;
+}
+
+.profileLink {
+    color: black;
+}
+
+.profileIcon {
+    color: var(--primary);
+    padding: 0px 5px 3px 0px;
 }

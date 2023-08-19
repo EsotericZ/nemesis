@@ -12,13 +12,18 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
+import CreateIcon from '@mui/icons-material/Create';
+import Divider from '@mui/material/Divider';
 import HomeIcon from '@mui/icons-material/Home';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import LoginIcon from '@mui/icons-material/Login';
+import LogoutIcon from '@mui/icons-material/Logout';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Modal from '@mui/material/Modal';
 import PeopleIcon from '@mui/icons-material/People';
+import PersonIcon from '@mui/icons-material/Person';
+import SettingsIcon from '@mui/icons-material/Settings';
 import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
@@ -169,22 +174,35 @@ export const Navbar = () => {
                                 {playerRoles.map((role, index) => {
                                     if (role === 1089) {
                                         return (
-                                            <MenuItem onClick={popupState.close}><Link to='/profile' className='profile'>Admin Dashboard</Link></MenuItem>
+                                            <MenuItem onClick={popupState.close} className='profile'>
+                                                <SettingsIcon className='profileIcon' />
+                                                <Link to='/profileLink' className='profile'>Admin Dashboard</Link>
+                                            </MenuItem>
                                         )
                                     }
                                     if (role === 1634) {
                                         return (
-                                            <MenuItem onClick={popupState.close}><Link to='/profile' className='profile'>Blog Dashboard</Link></MenuItem>
+                                            <MenuItem onClick={popupState.close} className='profile'>
+                                                <CreateIcon className='profileIcon' />
+                                                <Link to='/profileLink' className='profile'>Blog Dashboard</Link>
+                                            </MenuItem>
                                         )
                                     }
                                     if (role === 8128) {
                                         return (
-                                            <MenuItem onClick={popupState.close}><Link to='/profile' className='profile'>Event Dashboard</Link></MenuItem>
+                                            <MenuItem onClick={popupState.close} className='profile'>
+                                                <CalendarMonthIcon className='profileIcon' />
+                                                <Link to='/profileLink' className='profile'>Event Dashboard</Link>
+                                            </MenuItem>
                                         )
                                     }
                                 })}
-                                <MenuItem onClick={popupState.close}><Link to='/profile' className='profile'>Profile</Link></MenuItem>
-                                <MenuItem onClick={signOut} className='profile'>Logout</MenuItem>
+                                <MenuItem onClick={popupState.close} className='profile'>
+                                    <PersonIcon className='profileIcon' />
+                                    <Link to='/profile' className='profile'>Profile</Link>
+                                </MenuItem>
+                                <Divider variant="middle" />
+                                <MenuItem onClick={signOut} className='profile'><LogoutIcon className='profileIcon' />Logout</MenuItem>
                             </Menu>
                         </Fragment>
                     )}
