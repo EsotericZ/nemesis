@@ -1,0 +1,14 @@
+.eventsPage {
+    margin-top: 150px;
+    padding: 20px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background-color: var(--card);
+    color: var(--active);
+}
+
+.forwardBtn {
+    color: black !important;
+    background-color: var(--primary) !important;
+    width: 100px;
+}

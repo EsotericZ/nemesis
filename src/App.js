@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import { Admin } from './components/admin/Admin';
 import { Blog } from './components/blog/Blog';
+import { CreateEvent } from './components/createEvent/CreateEvent';
 import { Dashboard } from './components/dashboard/Dashboard';
 import { Director } from './components/director/Director';
 import { Events } from './components/events/Events';
@@ -50,6 +51,7 @@ export const App = () => {
 
                         <Route element={<RequireAuth allowedRoles={[ROLES.Director]} />}>
                             <Route path="/director" element={<Director />} />
+                            <Route path="/createEvent" element={<CreateEvent />} />
                         </Route>
 
                         <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
