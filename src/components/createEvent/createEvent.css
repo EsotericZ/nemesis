@@ -12,3 +12,7 @@
     background-color: var(--primary) !important;
     width: 100px;
 }
+
+.MuiInput-root {
+    border-bottom: 1px solid var(--grey) !important;
+}

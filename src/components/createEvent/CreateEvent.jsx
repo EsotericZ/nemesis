@@ -16,6 +16,33 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import { styled } from '@mui/system';
+
+const StyledTextField = styled(TextField)({
+    '& label.Mui-focused': {
+        color: '#CBCCD2',
+    },
+    '& .MuiInput-underline:after': {
+        borderBottomColor: '#CBCCD2',
+    },
+    '& .MuiInputLabel-root': {
+        color: '#CBCCD2',
+    },
+    '& .MuiOutlinedInput-input': {
+        color: '#CBCCD2',
+    },
+    '& .MuiOutlinedInput-root': {
+        '& fieldset': {
+            borderColor: '#CBCCD2',
+        },
+        '&:hover fieldset': {
+            borderColor: '#CBCCD2',
+        },
+        '&.Mui-focused fieldset': {
+            borderColor: '#CBCCD2',
+        },
+    },
+});
 
 const steps = ['Event Details', 'Divisions', 'Financials', 'Completion'];
 const products = [
@@ -135,92 +162,94 @@ export const CreateEvent = () => {
                     {activeStep === 0 && (
                         <Fragment>
                             <Typography variant="h6" gutterBottom>
-                                Shipping address
+                                Event Details
                             </Typography>
                             <Grid container spacing={3}>
-                                <Grid item xs={12} sm={6}>
-                                    <TextField
+                                <Grid item xs={12} sm={6} sx={{ color: 'white' }}>
+                                    <StyledTextField
                                         required
-                                        id="firstName"
-                                        name="firstName"
-                                        label="First name"
+                                        id="eventName"
+                                        name="eventName"
+                                        label="Event Name"
                                         fullWidth
-                                        autoComplete="given-name"
                                         variant="standard"
+                                        sx={{ input: {color: 'white'} }}
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
-                                    <TextField
+                                    <StyledTextField
                                         required
                                         id="lastName"
                                         name="lastName"
                                         label="Last name"
                                         fullWidth
-                                        autoComplete="family-name"
                                         variant="standard"
+                                        sx={{ input: {color: 'white'} }}
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <TextField
+                                    <StyledTextField
                                         required
                                         id="address1"
                                         name="address1"
                                         label="Address line 1"
                                         fullWidth
-                                        autoComplete="shipping address-line1"
                                         variant="standard"
+                                        sx={{ input: {color: 'white'} }}
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <TextField
+                                    <StyledTextField
                                         id="address2"
                                         name="address2"
                                         label="Address line 2"
                                         fullWidth
-                                        autoComplete="shipping address-line2"
                                         variant="standard"
+                                        sx={{ input: {color: 'white'} }}
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
-                                    <TextField
+                                    <StyledTextField
                                         required
                                         id="city"
                                         name="city"
                                         label="City"
                                         fullWidth
-                                        autoComplete="shipping address-level2"
+                                        // autoComplete="shipping address-level2"
                                         variant="standard"
+                                        sx={{ input: {color: 'white'} }}
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
-                                    <TextField
+                                    <StyledTextField
                                         id="state"
                                         name="state"
                                         label="State/Province/Region"
                                         fullWidth
                                         variant="standard"
+                                        sx={{ input: {color: 'white'} }}
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
-                                    <TextField
+                                    <StyledTextField
                                         required
                                         id="zip"
                                         name="zip"
                                         label="Zip / Postal code"
                                         fullWidth
-                                        autoComplete="shipping postal-code"
                                         variant="standard"
+                                        sx={{ input: {color: 'white'} }}
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
-                                    <TextField
+                                    <StyledTextField
                                         required
                                         id="country"
                                         name="country"
                                         label="Country"
                                         fullWidth
-                                        autoComplete="shipping country"
                                         variant="standard"
+                                        sx={{ input: {color: 'white'} }}
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
@@ -236,7 +265,7 @@ export const CreateEvent = () => {
                     {activeStep === 1 && (
                         <Fragment>
                             <Typography variant="h6" gutterBottom>
-                                Shipping address
+                                Divisions Offered
                             </Typography>
                             <Grid container spacing={3}>
                                 <Grid item xs={12} sm={6}>
@@ -337,7 +366,7 @@ export const CreateEvent = () => {
                     {activeStep === 2 && (
                         <Fragment>
                             <Typography variant="h6" gutterBottom>
-                                Shipping address
+                                Financials
                             </Typography>
                             <Grid container spacing={3}>
                                 <Grid item xs={12} sm={6}>
@@ -438,7 +467,7 @@ export const CreateEvent = () => {
                     {activeStep === 3 && (
                         <Fragment>
                             <Typography variant="h6" gutterBottom>
-                                Order summary
+                                Event Summary
                             </Typography>
                             <List disablePadding>
                                 {products.map((product) => (
@@ -483,14 +512,12 @@ export const CreateEvent = () => {
                         </Fragment>
                     )}
 
-
-
                     <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
                         <Button
                             color="inherit"
                             disabled={activeStep === 0}
                             onClick={handleBack}
-                            sx={{ mr: 1 }}
+                            sx={{ mr: 1, display: (activeStep === 0) && 'none' }}
                         >
                             Back
                         </Button>
