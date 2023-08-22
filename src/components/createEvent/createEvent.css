@@ -16,3 +16,7 @@
 .MuiInput-root {
     border-bottom: 1px solid var(--grey) !important;
 }
+
+.MuiPaper-root {
+    background-color: var(--grey) !important;
+}
