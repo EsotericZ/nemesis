@@ -1,4 +1,4 @@
-import { Fragment, useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 import login from '../services/portal/login';
@@ -9,33 +9,53 @@ import useInput from '../hooks/useInput';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
+import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Grid from '@mui/material/Grid';
+import IconButton from '@mui/material/IconButton';
+import InputAdornment from '@mui/material/InputAdornment';
+import InputLabel from '@mui/material/InputLabel';
+import OutlinedInput from '@mui/material/OutlinedInput';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-
-
-
-import IconButton from '@mui/material/IconButton';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-import InputAdornment from '@mui/material/InputAdornment';
-import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { styled } from '@mui/system';
+
+const StyledTextField = styled(TextField)({
+    '& label.Mui-focused': {
+        color: '#CBCCD2',
+    },
+    '& .MuiInput-underline:after': {
+        borderBottomColor: '#CBCCD2',
+    },
+    '& .MuiInputLabel-root': {
+        color: '#CBCCD2',
+    },
+    '& .MuiOutlinedInput-input': {
+        color: '#CBCCD2',
+    },
+    '& .MuiOutlinedInput-root': {
+        '& fieldset': {
+            borderColor: '#CBCCD2',
+        },
+        '&:hover fieldset': {
+            borderColor: '#CBCCD2',
+        },
+        '&.Mui-focused fieldset': {
+            borderColor: '#CBCCD2',
+        },
+    },
+});
 
 export const Login = () => {
     const { setAuth } = useAuth();
-
 
     const [showPassword, setShowPassword] = useState(false);
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
-
-
-
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -86,119 +106,118 @@ export const Login = () => {
     }
 
     return (
-        <section>
+        <Box sx={{ width: '500px', ml:'auto', mr:'auto' }}>
             <p ref={errRef} className={errorMessage ? "errmsg" : "offscreen"} aria-live="assertive">{errorMessage}</p>
-            <h1>Sign In</h1>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="email">Email:</label>
-                <input
-                    type="text"
-                    id="email"
-                    ref={userRef}
-                    autoComplete="off"
-                    // onChange={(e) => setEmail(e.target.value)}
-                    // value={email}
-                    // Use this is you want to save form data
-                    {...emailAttributes}
-                    required
-                />
-
-                {/* <label htmlFor="password">Password:</label>
-                <input
-                    type="password"
-                    id="password"
-                    onChange={(e) => setPassword(e.target.value)}
-                    value={password}
-                    required
-                /> */}
-                <button>Sign In</button>
-                <div className="persistCheck">
-                    <input 
-                        type='checkbox'
+            <Typography variant="h6" gutterBottom>
+                Sign In
+            </Typography>
+            <Grid container spacing={3}>
+                <Grid item xs={12} sm={12}>
+                    <StyledTextField
+                        required
+                        id="email"
+                        name="email"
+                        label="Email"
+                        ref={userRef}
+                        fullWidth
+                        autoComplete="given-name"
+                        {...emailAttributes}
+                    />
+                </Grid>
+                <Grid item xs={12} sm={12}>
+                    <FormControl variant="outlined" fullWidth>
+                        <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+                        <OutlinedInput
+                            id="outlined-adornment-password"
+                            type={showPassword ? 'text' : 'password'}
+                            endAdornment={
+                            <InputAdornment position="end">
+                                <IconButton
+                                aria-label="toggle password visibility"
+                                onClick={handleClickShowPassword}
+                                onMouseDown={handleMouseDownPassword}
+                                edge="end"
+                                >
+                                {showPassword ? <VisibilityOff /> : <Visibility />}
+                                </IconButton>
+                            </InputAdornment>
+                            }
+                            label="Password"
+                            onChange={(e) => setPassword(e.target.value)}
+                            value={password}
+                            required
+                        />
+                    </FormControl>
+                </Grid>
+                <Grid item xs={12}>
+                    <Button 
+                        className='forwardBtn'
+                        onClick={handleSubmit}
+                        color='inherit'
+                        label="Remember Me"
+                    >
+                        Sign In
+                    </Button>
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                    <FormControlLabel
+                        control={<Checkbox color="secondary" name="rememberMe" value="yes" />}
+                        label="Remember Me"
                         id='persist'
                         onChange={toggleCheck}
                         checked={check}
                     />
-                    <label htmlFor="persist">Trust This Device</label>
-                </div>
-            </form>
-            {/* <p>
-                Need an Account?<br />
-                <span className="line">
-                    <Link to="/register">Sign Up</Link>
-                </span>
-            </p> */}
-
-
-
-            <Box sx={{ width: '500px', ml:'auto', mr:'auto' }}>
-                <Typography variant="h6" gutterBottom>
-                    Sign In
-                </Typography>
-                <Grid container spacing={3}>
-                    <Grid item xs={12} sm={12}>
-                        <TextField
-                            required
-                            id="email"
-                            name="email"
-                            label="Email"
-                            fullWidth
-                            autoComplete="given-name"
-                        />
-                    </Grid>
-                    <Grid item xs={12} sm={12}>
-                        <FormControl variant="outlined" fullWidth>
-                            <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
-                            <OutlinedInput
-                                id="outlined-adornment-password"
-                                type={showPassword ? 'text' : 'password'}
-                                endAdornment={
-                                <InputAdornment position="end">
-                                    <IconButton
-                                    aria-label="toggle password visibility"
-                                    onClick={handleClickShowPassword}
-                                    onMouseDown={handleMouseDownPassword}
-                                    edge="end"
-                                    >
-                                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                                    </IconButton>
-                                </InputAdornment>
-                                }
-                                label="Password"
-                                onChange={(e) => setPassword(e.target.value)}
-                                value={password}
-                                required
-                            />
-                        </FormControl>
-                        {/* <TextField
-                            required
-                            id="password"
-                            name="password"
-                            label="Password"
-                            fullWidth
-                        /> */}
-                    </Grid>
-                    <Grid item xs={12}>
-                        <Button className='forwardBtn'
-                            color='inherit'
-                            label="Remember Me"
-                        >Sign In
-                        </Button>
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                        <FormControlLabel
-                            control={<Checkbox color="secondary" name="rememberMe" value="yes" />}
-                            label="Remember Me"
-                        />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                        <Link to="/register">Forgot Password</Link>
-                    </Grid>
-                    <Grid item xs={12} sm={12}>
-                        <Link to="/register">Create Account</Link>
-                    </Grid>
                 </Grid>
-            </Box> 
-        </section>
+                <Grid item xs={12} sm={6}>
+                    <Link to="/register">Forgot Password</Link>
+                </Grid>
+                <Grid item xs={12} sm={12}>
+                    <Link to="/register">Create Account</Link>
+                </Grid>
+            </Grid>
+        </Box> 
     )
 }
+
+
+
+                                        {/* <h1>Sign In</h1>
+                                        <form onSubmit={handleSubmit}>
+                                            <label htmlFor="email">Email:</label>
+                                            <input
+                                                type="text"
+                                                id="email"
+                                                ref={userRef}
+                                                autoComplete="off"
+                                                onChange={(e) => setEmail(e.target.value)}
+                                                value={email}
+                                                // Use this is you want to save form data
+                                                {...emailAttributes}
+                                                required
+                                            /> */}
+                            
+                                            {/* <label htmlFor="password">Password:</label>
+                                            <input
+                                                type="password"
+                                                id="password"
+                                                onChange={(e) => setPassword(e.target.value)}
+                                                value={password}
+                                                required
+                                            /> */}
+                                            {/* <button>Sign In</button>
+                                            <div className="persistCheck">
+                                                <input 
+                                                    type='checkbox'
+                                                    id='persist'
+                                                    onChange={toggleCheck}
+                                                    checked={check}
+                                                />
+                                                <label htmlFor="persist">Trust This Device</label>
+                                            </div>
+                                        </form> */}
+                                        {/* <p>
+                                            Need an Account?<br />
+                                            <span className="line">
+                                                <Link to="/register">Sign Up</Link>
+                                            </span>
+                                        </p> */}
