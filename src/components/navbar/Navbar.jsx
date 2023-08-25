@@ -30,7 +30,7 @@ import SpeedDialAction from '@mui/material/SpeedDialAction';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
-import { Login } from '../Login';
+import { Login } from '../login/Login';
 import './navbar.css';
 
 const style = {

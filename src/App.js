@@ -8,7 +8,7 @@ import { Director } from './components/director/Director';
 import { Events } from './components/events/Events';
 import { Home } from './components/home/Home';
 import { Layout } from './components/Layout';
-import { Login } from './components/Login';
+import { Login } from './components/login/Login';
 import { Missing } from './components/missing/Missing';
 import { Navbar } from './components/navbar/Navbar';
 import { PersistLogin } from './components/PersistLogin';

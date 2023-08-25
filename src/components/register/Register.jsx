@@ -2,22 +2,25 @@ import { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import axios from '../api/axios';
 import register from "../../services/portal/register";
+import './register.css'
 
 // const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-const REGISTER_URL = 'portal/register';
 
 export const Register = () => {
     const userRef = useRef();
     const errRef = useRef();
 
     // const [user, setUser] = useState('');
+    // const [validName, setValidName] = useState(false);
+    // const [userFocus, setUserFocus] = useState(false);
+    
     const [email, setEmail] = useState('');
-    const [validName, setValidName] = useState(false);
-    const [userFocus, setUserFocus] = useState(false);
-
+    const [validEmail, setValidEmail] = useState(false);
+    const [emailFocus, setEmailFocus] = useState(false);
+    
     const [password, setPassword] = useState('');
     const [validPassword, setValidPassword] = useState(false);
     const [passwordFocus, setPasswordFocus] = useState(false);
@@ -36,6 +39,10 @@ export const Register = () => {
     // useEffect(() => {
     //     setValidName(USER_REGEX.test(user));
     // }, [user])
+    
+    useEffect(() => {
+        setValidEmail(EMAIL_REGEX.test(email));
+    }, [email])
 
     useEffect(() => {
         setValidPassword(PWD_REGEX.test(password));
@@ -51,23 +58,15 @@ export const Register = () => {
         e.preventDefault();
         // if button enabled with JS hack
         // const v1 = USER_REGEX.test(user);
-        const v2 = PWD_REGEX.test(password);
-        // if (!v1 || !v2) {
-        if (!v2) {
+        const testEmail = EMAIL_REGEX.test(email);
+        const testPass = PWD_REGEX.test(password);
+        if (!testEmail || !testPass) {
             setErrorMessage("Invalid Entry");
             return;
         }
         try {
-            // const response = await axios.post(REGISTER_URL,
-            //     JSON.stringify({ user, password }),
-            //     {
-            //         headers: { 'Content-Type': 'application/json' },
-            //         withCredentials: true
-            //     }
-            // );
             const response = await register(email, password);
-            console.log(response?.data);
-            //console.log(JSON.stringify(response))
+            // console.log(response?.data);
             setSuccess(true);
             //clear state and controlled inputs
             // setUser('');
@@ -127,8 +126,8 @@ export const Register = () => {
 
                         <label htmlFor="email">
                             Email:
-                            {/* <FontAwesomeIcon icon={faCheck} className={validName ? "valid" : "hide"} />
-                            <FontAwesomeIcon icon={faTimes} className={validName || !user ? "hide" : "invalid"} /> */}
+                            <FontAwesomeIcon icon={faCheck} className={validEmail ? "valid" : "hide"} />
+                            <FontAwesomeIcon icon={faTimes} className={validEmail || !email ? "hide" : "invalid"} />
                         </label>
                         <input
                             type="text"
@@ -138,17 +137,17 @@ export const Register = () => {
                             onChange={(e) => setEmail(e.target.value)}
                             value={email}
                             required
-                            // aria-invalid={validName ? "false" : "true"}
-                            // aria-describedby="uidnote"
-                            onFocus={() => setUserFocus(true)}
-                            onBlur={() => setUserFocus(false)}
+                            aria-invalid={validEmail ? "false" : "true"}
+                            aria-describedby="uidnote"
+                            onFocus={() => setEmailFocus(true)}
+                            onBlur={() => setEmailFocus(false)}
                         />
-                        {/* <p id="uidnote" className={userFocus && user && !validName ? "instructions" : "offscreen"}>
+                        <p id="uidnote" className={emailFocus && email && !validEmail ? "instructions" : "offscreen"}>
                             <FontAwesomeIcon icon={faInfoCircle} />
                             4 to 24 characters.<br />
                             Must begin with a letter.<br />
                             Letters, numbers, underscores, hyphens allowed.
-                        </p> */}
+                        </p>
 
 
                         <label htmlFor="password">
@@ -196,8 +195,8 @@ export const Register = () => {
                             Must match the first password input field.
                         </p>
 
-                        {/* <button disabled={!validName || !validPassword || !validMatch ? true : false}>Sign Up</button> */}
-                        <button disabled={!validPassword || !validMatch ? true : false}>Sign Up</button>
+                        <button disabled={!validEmail || !validPassword || !validMatch ? true : false}>Sign Up</button>
+                        {/* <button disabled={!validPassword || !validMatch ? true : false}>Sign Up</button> */}
                     </form>
                     <p>
                         Already registered?<br />
