@@ -50,6 +50,32 @@ const StyledTextField = styled(TextField)({
     },
 });
 
+const StyledFormControl = styled(FormControl)({
+    '& label.Mui-focused': {
+        color: '#CBCCD2',
+    },
+    '& .MuiInput-underline:after': {
+        borderBottomColor: '#CBCCD2',
+    },
+    '& .MuiInputLabel-root': {
+        color: '#CBCCD2',
+    },
+    '& .MuiOutlinedInput-input': {
+        color: '#CBCCD2',
+    },
+    '& .MuiOutlinedInput-root': {
+        '& fieldset': {
+            borderColor: '#CBCCD2',
+        },
+        '&:hover fieldset': {
+            borderColor: '#CBCCD2',
+        },
+        '&.Mui-focused fieldset': {
+            borderColor: '#CBCCD2',
+        },
+    },
+});
+
 export const Login = () => {
     const { setAuth } = useAuth();
 
@@ -66,9 +92,9 @@ export const Login = () => {
     const userRef = useRef();
     const errRef = useRef();
 
-    // const [email, setEmail] = useState('');
+    const [email, setEmail] = useState('');
     // Use this is you want to save form data
-    const [email, resetEmail, emailAttributes] = useInput('email', '');
+    // const [email, resetEmail, emailAttributes] = useInput('email', '');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const [check, toggleCheck] = useToggle('persist', false);
@@ -88,9 +114,9 @@ export const Login = () => {
             const response = await login(email, password);
             const accessToken = response?.data?.accessToken;
             setAuth({ email, accessToken });
-            // setEmail('');
+            setEmail('');
             // Use this is you want to save form data
-            resetEmail();
+            // resetEmail();
             setPassword('');
             navigate(from, { replace: true });
         } catch (err) {
@@ -115,40 +141,46 @@ export const Login = () => {
             <Grid container spacing={3}>
                 <Grid item xs={12} sm={12}>
                     <StyledTextField
-                        required
+                        // required
                         id="email"
                         name="email"
                         label="Email"
                         ref={userRef}
                         fullWidth
                         autoComplete="given-name"
-                        {...emailAttributes}
+                        onChange={(e) => setEmail(e.target.value)}
+                        value={email}
+                        // {...emailAttributes}
                     />
                 </Grid>
                 <Grid item xs={12} sm={12}>
-                    <FormControl variant="outlined" fullWidth>
+                    {/* <FormControl variant="outlined" fullWidth> */}
+                    <StyledFormControl variant="outlined" fullWidth>
                         <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                         <OutlinedInput
                             id="outlined-adornment-password"
                             type={showPassword ? 'text' : 'password'}
                             endAdornment={
                                 <InputAdornment position="end">
-                                <IconButton
-                                aria-label="toggle password visibility"
-                                onClick={handleClickShowPassword}
-                                onMouseDown={handleMouseDownPassword}
-                                edge="end"
-                                >
-                                {showPassword ? <VisibilityOff /> : <Visibility />}
-                                </IconButton>
-                            </InputAdornment>
+                                    <IconButton
+                                    aria-label="toggle password visibility"
+                                    onClick={handleClickShowPassword}
+                                    onMouseDown={handleMouseDownPassword}
+                                    sx={{ color:'#CBCCD2' }}
+                                    edge="end"
+                                    >
+                                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                                    </IconButton>
+                                </InputAdornment>
                             }
                             label="Password"
                             onChange={(e) => setPassword(e.target.value)}
                             value={password}
+                            sx={{ color:'#CBCCD2' }}
                             required
                         />
-                    </FormControl>
+                    {/* </FormControl> */}
+                    </StyledFormControl>
                 </Grid>
                 <Grid item xs={12}>
                     <Button 
