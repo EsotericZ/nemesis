@@ -5,10 +5,12 @@ import login from '../services/portal/login';
 import useToggle from '../hooks/useToggle';
 // Use this is you want to save form data
 import useInput from '../hooks/useInput';
+import './login.css';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
+import Divider from '@mui/material/Divider';
 import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Grid from '@mui/material/Grid';
@@ -106,9 +108,8 @@ export const Login = () => {
     }
 
     return (
-        <Box sx={{ width: '500px', ml:'auto', mr:'auto' }}>
-            <p ref={errRef} className={errorMessage ? "errmsg" : "offscreen"} aria-live="assertive">{errorMessage}</p>
-            <Typography variant="h6" gutterBottom>
+        <Box sx={{ width: '400px', ml:'auto', mr:'auto' }} className='loginPage'>
+            <Typography className='signInTitle'>
                 Sign In
             </Typography>
             <Grid container spacing={3}>
@@ -131,7 +132,7 @@ export const Login = () => {
                             id="outlined-adornment-password"
                             type={showPassword ? 'text' : 'password'}
                             endAdornment={
-                            <InputAdornment position="end">
+                                <InputAdornment position="end">
                                 <IconButton
                                 aria-label="toggle password visibility"
                                 onClick={handleClickShowPassword}
@@ -151,7 +152,7 @@ export const Login = () => {
                 </Grid>
                 <Grid item xs={12}>
                     <Button 
-                        className='forwardBtn'
+                        className='signInBtn'
                         onClick={handleSubmit}
                         color='inherit'
                         label="Remember Me"
@@ -159,7 +160,7 @@ export const Login = () => {
                         Sign In
                     </Button>
                 </Grid>
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12} sm={12}>
                     <FormControlLabel
                         control={<Checkbox color="secondary" name="rememberMe" value="yes" />}
                         label="Remember Me"
@@ -168,13 +169,14 @@ export const Login = () => {
                         checked={check}
                     />
                 </Grid>
-                <Grid item xs={12} sm={6}>
-                    <Link to="/register">Forgot Password</Link>
-                </Grid>
-                <Grid item xs={12} sm={12}>
-                    <Link to="/register">Create Account</Link>
-                </Grid>
             </Grid>
+                <Divider variant='middle' sx={{ bgcolor:'#CBCCD2', mt:'25px', mb:'15px' }} />
+                <Typography className='signInTextParent'>
+                    <Link to="/register" className="signInText">Forgot Password</Link>
+                    <Link to="/register" className="signInText">Create Account</Link>
+                </Typography>
+                <p ref={errRef} className={errorMessage ? "errmsg" : "offscreen"} aria-live="assertive">{errorMessage}</p>
+            {/* </Grid> */}
         </Box> 
     )
 }
