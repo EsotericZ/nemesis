@@ -1,9 +1,11 @@
 import axios from '../../api/axios';
 
-const register = async (email, password) => {
+const register = async (firstName, lastName, email, password) => {
     const response = await axios.post('/portal/register', {
-        email, 
-        password,
+            firstName,
+            lastName,
+            email, 
+            password,
         },
         {
             headers: { 'Content-Type': 'application/json' },

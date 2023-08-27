@@ -118,6 +118,9 @@ export const Register = () => {
     // const [validName, setValidName] = useState(false);
     // const [userFocus, setUserFocus] = useState(false);
     
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+
     const [email, setEmail] = useState('');
     const [validEmail, setValidEmail] = useState(false);
     const [emailFocus, setEmailFocus] = useState(false);
@@ -178,11 +181,12 @@ export const Register = () => {
             return;
         }
         try {
-            const response = await register(email, password);
-            // console.log(response?.data);
+            const response = await register(firstName, lastName, email, password);
             setSuccess(true);
             //clear state and controlled inputs
             // setUser('');
+            setFirstName('');
+            setLastName('');
             setEmail('');
             setPassword('');
             setMatchPassword(' ');
@@ -202,10 +206,10 @@ export const Register = () => {
         <Box sx={{ width: '400px', ml:'auto', mr:'auto' }} className='registerPage'>
             {success ? (
                 <section>
-                    <h1>Success!</h1>
-                    <p>
-                        <a href="#">Sign In</a>
-                    </p>
+                    <Typography className='registerTitle'>
+                        User Created
+                    </Typography>
+                    <Link to="/login" className="signInText">Login</Link>
                 </section>
             ) : (
                 <section>
@@ -214,6 +218,30 @@ export const Register = () => {
                         Register
                     </Typography>
                     <Grid container spacing={3}>
+                        <Grid item xs={12} sm={12}>
+                            <StyledTextField
+                                id="firstName"
+                                name="firstName"
+                                label="First Name"
+                                fullWidth
+                                autoComplete="off"
+                                onChange={(e) => setFirstName(e.target.value)}
+                                value={firstName}
+                                required
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={12}>
+                            <StyledTextField
+                                id="lastName"
+                                name="lastName"
+                                label="Last Name"
+                                fullWidth
+                                autoComplete="off"
+                                onChange={(e) => setLastName(e.target.value)}
+                                value={lastName}
+                                required
+                            />
+                        </Grid>
                         <Grid item xs={12} sm={12}>
                             <CheckTextField
                             /* <TextField */
@@ -312,7 +340,7 @@ export const Register = () => {
                     
                         <Grid item xs={12}>
                             <Button 
-                                disabled={!validEmail || !validPassword || !validMatch ? true : false}
+                                disabled={!firstName || !lastName || !validEmail || !validPassword || !validMatch ? true : false}
                                 className='registerBtn'
                                 onClick={handleSubmit}
                                 fullWidth
