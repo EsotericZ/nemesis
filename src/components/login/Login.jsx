@@ -202,13 +202,12 @@ export const Login = () => {
                     />
                 </Grid>
             </Grid>
-                <Divider variant='middle' sx={{ bgcolor:'#CBCCD2', mt:'25px', mb:'15px' }} />
-                <Typography className='signInTextParent'>
-                    <Link to="/register" className="signInText">Forgot Password</Link>
-                    <Link to="/register" className="signInText">Create Account</Link>
-                </Typography>
-                <p ref={errRef} className={errorMessage ? "errmsg" : "offscreen"} aria-live="assertive">{errorMessage}</p>
-            {/* </Grid> */}
+            <Divider variant='middle' sx={{ bgcolor:'#CBCCD2', mt:'25px', mb:'15px' }} />
+            <Typography className='signInTextParent'>
+                <Link to="/register" className="signInText">Forgot Password</Link>
+                <Link to="/register" className="signInText">Create Account</Link>
+            </Typography>
+            <p ref={errRef} className={errorMessage ? "errmsg" : "offscreen"} aria-live="assertive">{errorMessage}</p>
         </Box> 
     )
 }
