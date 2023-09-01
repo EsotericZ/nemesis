@@ -29,7 +29,9 @@ export const Home = () => {
                     <Card style={{backgroundColor: 'transparent'}} className="card">
                         <CardMedia 
                             className='wrapper'
-                            image="https://tvseriescritic.files.wordpress.com/2016/10/stranger-things-bicycle-lights-children.jpg"
+                            // image="https://tvseriescritic.files.wordpress.com/2016/10/stranger-things-bicycle-lights-children.jpg"
+                            image="https://res.cloudinary.com/duqbioalq/image/upload/v1693604797/home02_ct7sjr.jpg"
+                            loading='lazy'
                         >
                             <CardContent className='header'>
                                 <div class="date">
@@ -55,7 +57,9 @@ export const Home = () => {
                     <Card style={{backgroundColor: 'transparent'}} className="card">
                         <CardMedia 
                             className='wrapper'
-                            image="https://tvseriescritic.files.wordpress.com/2016/10/stranger-things-bicycle-lights-children.jpg"
+                            // image="https://tvseriescritic.files.wordpress.com/2016/10/stranger-things-bicycle-lights-children.jpg"
+                            image="https://res.cloudinary.com/duqbioalq/image/upload/v1693604797/home03_kqw9jl.jpg"
+                            loading='lazy'
                         >
                             <CardContent className='header'>
                                 <div class="date">
@@ -81,7 +85,9 @@ export const Home = () => {
                     <Card style={{backgroundColor: 'transparent'}} className="card">
                         <CardMedia 
                             className='wrapper'
-                            image="https://tvseriescritic.files.wordpress.com/2016/10/stranger-things-bicycle-lights-children.jpg"
+                            // image="https://tvseriescritic.files.wordpress.com/2016/10/stranger-things-bicycle-lights-children.jpg"
+                            image="https://res.cloudinary.com/duqbioalq/image/upload/v1693604797/home04_n90vnv.jpg"
+                            loading='lazy'
                         >
                             <CardContent className='header'>
                                 <div class="date">
@@ -107,7 +113,9 @@ export const Home = () => {
                     <Card style={{backgroundColor: 'transparent'}} className="card">
                         <CardMedia 
                             className='wrapper'
-                            image="https://tvseriescritic.files.wordpress.com/2016/10/stranger-things-bicycle-lights-children.jpg"
+                            // image="https://tvseriescritic.files.wordpress.com/2016/10/stranger-things-bicycle-lights-children.jpg"
+                            image="https://res.cloudinary.com/duqbioalq/image/upload/v1693604796/home01_trezgh.jpg"
+                            loading='lazy'
                         >
                             <CardContent className='header'>
                                 <div class="date">
