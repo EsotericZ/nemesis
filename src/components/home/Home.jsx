@@ -34,18 +34,18 @@ export const Home = () => {
                         >
                             <CardContent className='header'>
                                 <div class="date">
-                                    <span>08/16/2023</span>
+                                    <span>09/03/2023</span>
                                 </div>
                                 <ul class="menu-content">
-                                    <li><a href="#" className="cardType">Event</a></li>
+                                    <li><a href="#" className="cardType">Nemesis Event</a></li>
                                 </ul>
                             </CardContent>
                             <CardContent sx={{ p:0, '&:last-child': { pb: 0 }}} className='data'>
                                 <div class="content">
-                                    <span class="author">Jane Doe</span>
-                                    <h1 class="title">Stranger Things: The sound of the Upside Down</h1>
-                                    <p class="text">The antsy bingers of Netflix will eagerly anticipate the digital release of the Survive soundtrack, out today.</p>
-                                    <a href="#" class="button">Read more</a>
+                                    <span class="author">Nemesis</span>
+                                    <h1 class="title">No upcoming events</h1>
+                                    <p class="text">Software is being built for use ASAP! Events will be available here in the near future</p>
+                                    <a href="#" class="button">Register</a>
                                 </div>
                             </CardContent>
                         </CardMedia>
@@ -61,17 +61,17 @@ export const Home = () => {
                         >
                             <CardContent className='header'>
                                 <div class="date">
-                                    <span>08/16/2023</span>
+                                    <span>09/03/2023</span>
                                 </div>
                                 <ul class="menu-content">
-                                    <li><a href="#"  className="cardType">Event</a></li>
+                                    <li><a href="#"  className="cardType">Blog</a></li>
                                 </ul>
                             </CardContent>
                             <CardContent sx={{ p:0, '&:last-child': { pb: 0 }}} className='data'>
                                 <div class="content">
-                                    <span class="author">Jane Doe</span>
-                                    <h1 class="title">Stranger Things: The sound of the Upside Down</h1>
-                                    <p class="text">The antsy bingers of Netflix will eagerly anticipate the digital release of the Survive soundtrack, out today.</p>
+                                    <span class="author">CJ Sanders</span>
+                                    <h1 class="title">Welcome to Nemesis Racquetball</h1>
+                                    <p class="text">Home of the future for racquetball events, rankings, blog and more. Started in 2023</p>
                                     <a href="#" class="button">Read more</a>
                                 </div>
                             </CardContent>
@@ -88,18 +88,18 @@ export const Home = () => {
                         >
                             <CardContent className='header'>
                                 <div class="date">
-                                    <span>08/16/2023</span>
+                                    <span>09/03/2023</span>
                                 </div>
                                 <ul class="menu-content">
-                                    <li><a href="#"  className="cardType">Event</a></li>
+                                    <li><a href="#"  className="cardType">Rankings</a></li>
                                 </ul>
                             </CardContent>
                             <CardContent sx={{ p:0, '&:last-child': { pb: 0 }}} className='data'>
                                 <div class="content">
-                                    <span class="author">Jane Doe</span>
-                                    <h1 class="title">Stranger Things: The sound of the Upside Down</h1>
-                                    <p class="text">The antsy bingers of Netflix will eagerly anticipate the digital release of the Survive soundtrack, out today.</p>
-                                    <a href="#" class="button">Read more</a>
+                                    <span class="author">Nemesis</span>
+                                    <h1 class="title">The new and improved ranking system</h1>
+                                    <p class="text">No more tracking, a points based system based on the players level and scores of the match</p>
+                                    <a href="/ranking" class="button">See Ranks</a>
                                 </div>
                             </CardContent>
                         </CardMedia>
@@ -110,24 +110,27 @@ export const Home = () => {
                     <Card style={{backgroundColor: 'transparent'}} className="card">
                         <CardMedia 
                             className='wrapper'
-                            // image="https://tvseriescritic.files.wordpress.com/2016/10/stranger-things-bicycle-lights-children.jpg"
                             image="https://res.cloudinary.com/duqbioalq/image/upload/v1693604796/home01_trezgh.jpg"
                             loading='lazy'
                         >
                             <CardContent className='header'>
                                 <div class="date">
-                                    <span>08/16/2023</span>
+                                    <span>09/23/2023</span>
                                 </div>
                                 <ul class="menu-content">
-                                    <li><a href="#" className="cardType">Event</a></li>
+                                    <li><a href="#" className="cardType">R2 Event</a></li>
                                 </ul>
                             </CardContent>
                             <CardContent sx={{ p:0, '&:last-child': { pb: 0 }}} className='data'>
                                 <div class="content">
-                                    <span class="author">Jane Doe</span>
-                                    <h1 class="title">Stranger Things: The sound of the Upside Down</h1>
-                                    <p class="text">The antsy bingers of Netflix will eagerly anticipate the digital release of the Survive soundtrack, out today.</p>
-                                    <a href="#" class="button">Read more</a>
+                                    <span class="author">Deb Beldring</span>
+                                    <h1 class="title">DAC World Racquetball Day 09/03/2023</h1>
+                                    <p class="text">
+                                        Come bring in World Racquetball Day at the DAC! 
+                                        We will be offering a full day of racquetball! Singles in the morning, doubles in the afternoon. 
+                                        Get to know other players as we switch it up!
+                                    </p>
+                                    <a href="#" class="button">Full Calendar</a>
                                 </div>
                             </CardContent>
                         </CardMedia>
