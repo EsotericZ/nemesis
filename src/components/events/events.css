@@ -1,0 +1,26 @@
+.eventPage {
+    margin-top: 75px;
+}
+
+.eventTitle {
+    text-align: center;
+    font-size: 30px !important;
+    padding: 0 0 20px 0;
+}
+
+.eventBtn {
+    color: black !important;
+    background-color: var(--primary) !important;
+    width: 20%;
+}
+
+.r2Form {
+    margin-top: 20px !important;
+}
+
+.r2Btn {
+    margin-top: 20px !important;
+    color: black !important;
+    background-color: var(--primary) !important;
+    width: 100%;
+}
