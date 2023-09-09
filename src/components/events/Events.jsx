@@ -8,6 +8,13 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/system';
 
+import dayjs from 'dayjs';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+
 import createEvent from "../../services/events/createEvent";
 import createR2Event from "../../services/events/createR2Event";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
@@ -85,22 +92,60 @@ const StyledTextField = styled(TextField)({
     },
 });
 
+const StyledDatePicker = styled(DatePicker)({
+    '& label.Mui-focused': {
+        color: '#CBCCD2',
+    },
+    '& .MuiInput-underline:after': {
+        borderBottomColor: '#CBCCD2',
+    },
+    '& .MuiInputLabel-root': {
+        color: '#CBCCD2',
+    },
+    '& .MuiOutlinedInput-input': {
+        color: '#CBCCD2',
+    },
+    '& .MuiOutlinedInput-root': {
+        '& fieldset': {
+            borderColor: '#CBCCD2',
+        },
+        '&:hover fieldset': {
+            borderColor: '#CBCCD2',
+        },
+        '&.Mui-focused fieldset': {
+            borderColor: '#CBCCD2',
+        },
+    },
+});
+
 export const Events = () => {
     const axiosPrivate = useAxiosPrivate();
+    const tomorrow = dayjs().add(1, 'day').set('hour', 22).startOf('hour');
 
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
     const [eventName, setEventName] = useState('');
-    const [startDate, setStartDate] = useState('');
-    const [endDate, setEndDate] = useState('');
     const [location, setLocation] = useState('');
     const [club, setClub] = useState('');
+    const [startDate, setStartDate] = useState(dayjs(`${tomorrow}`).format('MM-DD-YYYY'));
+    const [endDate, setEndDate] = useState(dayjs(`${tomorrow}`).format('MM-DD-YYYY'));
     const [director, setDirector] = useState('');
     const [eventURL, setEventURL] = useState('');
     const [image, setImage] = useState('');
     const [description, setDescription] = useState('');
+    const [newR2Event, setNewR2Event] = useState({
+        eventName: '',
+        location: '',
+        club: '',
+        startDate: '',
+        endDate: '',
+        director: '',
+        eventURL: '',
+        image: '',
+        description: '',
+    });
 
     const handleSubmit = async () => {
         try {
@@ -111,8 +156,19 @@ export const Events = () => {
     }
 
     const handleR2Submit = async () => {
+        setNewR2Event({
+            eventName: eventName,
+            location: location,
+            club: club,
+            startDate: startDate,
+            endDate: endDate,
+            director: director,
+            eventURL: eventURL,
+            image: image,
+            description: description,
+        })
         try {
-            await createR2Event(axiosPrivate);
+            await createR2Event(axiosPrivate, newR2Event);
         } catch (err) {
             console.error(err);
         }
@@ -120,7 +176,7 @@ export const Events = () => {
     }
 
     return (
-        <>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
             <Modal
                 open={open}
                 onClose={handleClose}
@@ -138,6 +194,7 @@ export const Events = () => {
                             fullWidth
                             onChange={(e) => setEventName(e.target.value)}
                             value={eventName}
+                            // onChange={handleEventDetails}
                         />
                         <TextField
                             required
@@ -159,6 +216,46 @@ export const Events = () => {
                             onChange={(e) => setClub(e.target.value)}
                             value={club}
                         />
+                        <div>
+                            <StyledDatePicker
+                                id='startDate'
+                                name='startDate'
+                                label='Start Date'
+                                defaultValue={tomorrow}
+                                disablePast
+                                className='r2Form'
+                                views={['year', 'month', 'day']}
+                                sx={{ 
+                                    svg: {color: 'white'},
+                                    input: {color: 'white'},
+                                    width: '49.5%',
+                                    float: 'left'
+                                }}
+                                onChange={(newDate) => {
+                                    setStartDate(dayjs(newDate).format('MM-DD-YYYY'))
+                                }}
+                                // value={startDate}
+                            />
+                            <StyledDatePicker
+                                id='endDate'
+                                name='endDate'
+                                label='End Date'
+                                defaultValue={tomorrow}
+                                disablePast
+                                className='r2Form'
+                                views={['year', 'month', 'day']}
+                                sx={{ 
+                                    svg: {color: 'white'},
+                                    input: {color: 'white'},
+                                    width: '49.5%',
+                                    float: 'right'
+                                }}
+                                onChange={(newDate) => {
+                                    setEndDate(dayjs(newDate).format('MM-DD-YYYY'))
+                                }}
+                                // value={endDate}
+                            />
+                        </div>
                         <TextField
                             required
                             id="director"
@@ -225,6 +322,6 @@ export const Events = () => {
                     New R2
                 </Button>
             </Box>
-        </>
+        </LocalizationProvider>
     )
 }
