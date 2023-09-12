@@ -126,26 +126,32 @@ export const Events = () => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    const [eventName, setEventName] = useState('');
-    const [location, setLocation] = useState('');
-    const [club, setClub] = useState('');
+    // const [eventName, setEventName] = useState('');
+    // const [location, setLocation] = useState('');
+    // const [club, setClub] = useState('');
     const [startDate, setStartDate] = useState(dayjs(`${tomorrow}`).format('MM-DD-YYYY'));
     const [endDate, setEndDate] = useState(dayjs(`${tomorrow}`).format('MM-DD-YYYY'));
-    const [director, setDirector] = useState('');
-    const [eventURL, setEventURL] = useState('');
-    const [image, setImage] = useState('');
-    const [description, setDescription] = useState('');
+    // const [director, setDirector] = useState('');
+    // const [eventURL, setEventURL] = useState('');
+    // const [image, setImage] = useState('');
+    // const [description, setDescription] = useState('');
     const [newR2Event, setNewR2Event] = useState({
         eventName: '',
         location: '',
         club: '',
-        startDate: '',
-        endDate: '',
         director: '',
         eventURL: '',
         image: '',
         description: '',
     });
+
+    const handleEventDetails = (e) => {
+        const { name, value } = e.target;
+        setNewR2Event((prev) => {
+            return { ...prev, [name]: value }
+        });
+        console.log(newR2Event)
+    }
 
     const handleSubmit = async () => {
         try {
@@ -156,19 +162,8 @@ export const Events = () => {
     }
 
     const handleR2Submit = async () => {
-        setNewR2Event({
-            eventName: eventName,
-            location: location,
-            club: club,
-            startDate: startDate,
-            endDate: endDate,
-            director: director,
-            eventURL: eventURL,
-            image: image,
-            description: description,
-        })
         try {
-            await createR2Event(axiosPrivate, newR2Event);
+            await createR2Event(axiosPrivate, newR2Event, startDate, endDate);
         } catch (err) {
             console.error(err);
         }
@@ -192,9 +187,7 @@ export const Events = () => {
                             name="eventName"
                             label="Event Name"
                             fullWidth
-                            onChange={(e) => setEventName(e.target.value)}
-                            value={eventName}
-                            // onChange={handleEventDetails}
+                            onChange={handleEventDetails}
                         />
                         <TextField
                             required
@@ -203,8 +196,7 @@ export const Events = () => {
                             label="City, State"
                             fullWidth
                             className='r2Form'
-                            onChange={(e) => setLocation(e.target.value)}
-                            value={location}
+                            onChange={handleEventDetails}
                         />
                         <TextField
                             required
@@ -213,8 +205,7 @@ export const Events = () => {
                             label="Club"
                             fullWidth
                             className='r2Form'
-                            onChange={(e) => setClub(e.target.value)}
-                            value={club}
+                            onChange={handleEventDetails}
                         />
                         <div>
                             <StyledDatePicker
@@ -234,7 +225,6 @@ export const Events = () => {
                                 onChange={(newDate) => {
                                     setStartDate(dayjs(newDate).format('MM-DD-YYYY'))
                                 }}
-                                // value={startDate}
                             />
                             <StyledDatePicker
                                 id='endDate'
@@ -253,7 +243,6 @@ export const Events = () => {
                                 onChange={(newDate) => {
                                     setEndDate(dayjs(newDate).format('MM-DD-YYYY'))
                                 }}
-                                // value={endDate}
                             />
                         </div>
                         <TextField
@@ -263,8 +252,7 @@ export const Events = () => {
                             label="Tournament Director"
                             fullWidth
                             className='r2Form'
-                            onChange={(e) => setDirector(e.target.value)}
-                            value={director}
+                            onChange={handleEventDetails}
                         />
                         <TextField
                             required
@@ -273,8 +261,7 @@ export const Events = () => {
                             label="Event Link"
                             fullWidth
                             className='r2Form'
-                            onChange={(e) => setEventURL(e.target.value)}
-                            value={eventURL}
+                            onChange={handleEventDetails}
                         />
                         <TextField
                             id="image"
@@ -282,8 +269,7 @@ export const Events = () => {
                             label="Event Image"
                             fullWidth
                             className='r2Form'
-                            onChange={(e) => setImage(e.target.value)}
-                            value={image}
+                            onChange={handleEventDetails}
                         />
                         <TextField
                             id="description"
@@ -291,8 +277,7 @@ export const Events = () => {
                             label="Description"
                             fullWidth
                             className='r2Form'
-                            onChange={(e) => setDescription(e.target.value)}
-                            value={description}
+                            onChange={handleEventDetails}
                         />
                         <Button 
                             className='r2Btn'

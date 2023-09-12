@@ -237,11 +237,6 @@ export const CreateEvent = () => {
 
     const handleFinish = () => {
         handleNext();
-        console.log(newEvent)
-        console.log(eventDate)
-        console.log(startTime)
-        console.log(endTime)
-        console.log(deadline)
     }
 
     const [eventDate, setEventDate] = useState(dayjs(`${tomorrow}`).format('MM-DD-YYYY'));
