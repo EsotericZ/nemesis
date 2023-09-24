@@ -10,9 +10,12 @@ import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Grid from '@mui/material/Grid';
+import InputLabel from "@mui/material/InputLabel";
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
+import MenuItem from '@mui/material/MenuItem';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
@@ -252,7 +255,12 @@ export const CreateEvent = () => {
         imageURL: '',
     });
     const [formats, setFormats] = useState([]);
+    const [format, setFormat] = useState('Shootout');
     const [divisions, setDivisions] = useState([]);
+
+    const handleChangeFormat = (e) => {
+        setFormat(e.target.value);
+    };
     
     const handleEventDetails = (e) => {
         const { name, value } = e.target;
@@ -276,7 +284,6 @@ export const CreateEvent = () => {
             try {
                 const response = await getAllDivisions(axiosPrivate);
                 setDivisions(response);
-                console.log(response)
             } catch (err) {
                 console.log(err)
             }
@@ -350,6 +357,29 @@ export const CreateEvent = () => {
                                             sx={{ input: {color: 'white'} }}
                                             onChange={handleEventDetails}
                                         />
+                                    </Grid>
+                                    <Grid item xs={12} sm={6} className='multiLine'>
+                                        <InputLabel id="eventFormat">Event Type</InputLabel>
+                                        <Select
+                                            labelId="eventFormat"
+                                            name="eventFormat"
+                                            value={format}
+                                            label="Event Type"
+                                            onChange={handleChangeFormat}
+                                            sx={{ 
+                                                svg: {color: 'white'},
+                                                input: {color: 'white'} 
+                                            }}
+                                        >
+                                            {formats.map((format, i) => (
+                                                <MenuItem 
+                                                    value={format.eventName}
+                                                    key={i}
+                                                >
+                                                    {format.eventName}
+                                                </MenuItem>
+                                            ))}
+                                        </Select>
                                     </Grid>
                                     <Grid item xs={12} sm={12} sx={{ color: 'white' }}>
                                         <StyledTextField
