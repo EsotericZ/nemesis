@@ -1,6 +1,7 @@
 import { Fragment, useEffect, useState } from "react";
 // import createEvent from "../../services/events/createEvent";
 import getAllDivisions from "../../services/divisions/getAllDivisions";
+import getAllEventTypes from "../../services/eventTypes/getAllEventTypes";
 import getAllFormats from "../../services/formats/getAllFormats";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import './createEvent.css';
@@ -255,11 +256,17 @@ export const CreateEvent = () => {
         imageURL: '',
     });
     const [formats, setFormats] = useState([]);
-    const [format, setFormat] = useState('Shootout');
+    const [format, setFormat] = useState('');
+    const [eventTypes, setEventTypes] = useState([]);
+    const [eventType, setEventType] = useState('');
     const [divisions, setDivisions] = useState([]);
 
     const handleChangeFormat = (e) => {
         setFormat(e.target.value);
+    };
+    
+    const handleChangeEventType = (e) => {
+        setEventType(e.target.value);
     };
     
     const handleEventDetails = (e) => {
@@ -270,6 +277,16 @@ export const CreateEvent = () => {
     }
 
     useEffect(() => {
+        const getEventTypes = async () => {
+            try {
+                const response = await getAllEventTypes(axiosPrivate);
+                setEventTypes(response);
+            } catch (err) {
+                console.log(err)
+            }
+        }
+        getEventTypes();
+
         const getFormats = async () => {
             try {
                 const response = await getAllFormats(axiosPrivate);
@@ -363,8 +380,31 @@ export const CreateEvent = () => {
                                         <Select
                                             labelId="eventFormat"
                                             name="eventFormat"
-                                            value={format}
+                                            value={eventType}
                                             label="Event Type"
+                                            onChange={handleChangeEventType}
+                                            sx={{ 
+                                                svg: {color: 'white'},
+                                                input: {color: 'white'} 
+                                            }}
+                                        >
+                                            {eventTypes.map((type, i) => (
+                                                <MenuItem 
+                                                    value={type.eventTypeName}
+                                                    key={i}
+                                                >
+                                                    {type.eventTypeName}
+                                                </MenuItem>
+                                            ))}
+                                        </Select>
+                                    </Grid>
+                                    <Grid item xs={12} sm={6} className='multiLine'>
+                                        <InputLabel id="divisionFormat">Division Format</InputLabel>
+                                        <Select
+                                            labelId="divisionFormat"
+                                            name="divisionFormat"
+                                            value={format}
+                                            label="Division Format"
                                             onChange={handleChangeFormat}
                                             sx={{ 
                                                 svg: {color: 'white'},
