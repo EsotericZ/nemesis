@@ -1,5 +1,7 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 // import createEvent from "../../services/events/createEvent";
+import getAllDivisions from "../../services/divisions/getAllDivisions";
+import getAllFormats from "../../services/formats/getAllFormats";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import './createEvent.css';
 
@@ -249,6 +251,8 @@ export const CreateEvent = () => {
         description: '',
         imageURL: '',
     });
+    const [formats, setFormats] = useState([]);
+    const [divisions, setDivisions] = useState([]);
     
     const handleEventDetails = (e) => {
         const { name, value } = e.target;
@@ -256,6 +260,30 @@ export const CreateEvent = () => {
             return { ...prev, [name]: value }
         });
     }
+
+    useEffect(() => {
+        const getFormats = async () => {
+            try {
+                const response = await getAllFormats(axiosPrivate);
+                setFormats(response);
+            } catch (err) {
+                console.log(err)
+            }
+        }
+        getFormats();
+
+        const getDivisions = async () => {
+            try {
+                const response = await getAllDivisions(axiosPrivate);
+                setDivisions(response);
+                console.log(response)
+            } catch (err) {
+                console.log(err)
+            }
+        }
+        getDivisions();
+
+    }, [])
 
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
