@@ -17,6 +17,7 @@ import { Rankings } from './components/rankings/Rankings';
 import { Register } from './components/register/Register';
 import { RequireAuth } from './components/RequireAuth';
 import { Unauthorized } from './components/unauthorized/Unauthorized';
+import { WriteBlog } from './components/blog/WriteBlog';
 
 
 // import ROLES from './services/roles/roles';
@@ -44,9 +45,12 @@ export const App = () => {
                         <Route path="/home" element={<Home />} />
                         <Route path="/ranking" element={<Rankings />} />
 
-                        <Route element={<RequireAuth allowedRoles={[ROLES.Player]} />}>
-                            <Route path="/dashboard" element={<Dashboard />} />
-                            <Route path="/profile" element={<Profile />} />
+                        <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
+                            <Route path="/admin" element={<Admin />} />
+                        </Route>
+
+                        <Route element={<RequireAuth allowedRoles={[ROLES.Blogger]} />}>
+                            <Route path="/writeBlog" element={<WriteBlog />} />
                         </Route>
 
                         <Route element={<RequireAuth allowedRoles={[ROLES.Director]} />}>
@@ -54,9 +58,12 @@ export const App = () => {
                             <Route path="/createEvent" element={<CreateEvent />} />
                         </Route>
 
-                        <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
-                            <Route path="/admin" element={<Admin />} />
+                        <Route element={<RequireAuth allowedRoles={[ROLES.Player]} />}>
+                            <Route path="/dashboard" element={<Dashboard />} />
+                            <Route path="/profile" element={<Profile />} />
                         </Route>
+
+
                     </Route>
 
                     <Route path="*" element={<Missing />} />
